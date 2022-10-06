@@ -3,32 +3,32 @@
 import 'package:authentication/EmailLogin/sign_up.dart';
 import 'package:authentication/PhoneLogin/PhoneVerificationScreen.dart';
 import 'package:authentication/user_model.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 typedef DoubleStringParamCallback<T, E> = Function(T first, E second);
 typedef SingleStringParamCallback = Function(String phoneNumber);
-typedef modelParamCallback = Function(userModel user);
+typedef ModelParamCallback = Function(userModel user);
 
 class AuthenticationWidget extends StatelessWidget {
-  AuthenticationWidget(
-      {Key? key,
-      required this.onEmailLoginPressed,
-      required this.isSignUpVisible,
-      this.emailFieldhintText,
-      this.passwordFieldFieldhintText,
-      this.loginButtonText,
-      this.title,
-      this.imagePath,
-      required this.phoneAuthentication,
-      required this.onPhoneLoginPressed,
-      this.onSignUpPressed,
-      this.additionalWidget,
-      this.signUpButtonText,
-      this.cardColor,
-      this.scaffoldbackGroundColor})
-      : super(key: key);
+  AuthenticationWidget({
+    Key? key,
+    required this.onEmailLoginPressed,
+    required this.isSignUpVisible,
+    this.emailFieldhintText,
+    this.passwordFieldFieldhintText,
+    this.loginButtonText,
+    this.title,
+    required this.phoneAuthentication,
+    required this.onPhoneLoginPressed,
+    this.onSignUpPressed,
+    this.additionalWidget,
+    this.signUpButtonText,
+    this.cardColor,
+    this.scaffoldbackGroundColor,
+    this.buttonColor,
+    this.isImageVisible,
+  }) : super(key: key);
 
   //final VoidCallback? onTap;
   bool phoneAuthentication = false;
@@ -39,9 +39,11 @@ class AuthenticationWidget extends StatelessWidget {
   bool isSignUpVisible = false;
   Widget? additionalWidget;
   Color? cardColor;
+  Color? buttonColor;
   Color? scaffoldbackGroundColor;
   String? title;
-  String? imagePath;
+  Image? image;
+  bool? isImageVisible = false;
   String? emailFieldhintText;
   String? passwordFieldFieldhintText;
   String? loginButtonText;
@@ -52,14 +54,18 @@ class AuthenticationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: scaffoldbackGroundColor ?? Colors.white,
+      backgroundColor: scaffoldbackGroundColor ?? Colors.black54,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image(
-              height: 250,
-              width: 600,
-              image: AssetImage(imagePath ?? 'assets/images/login.png'),
+            Visibility(
+              visible: isImageVisible == true,
+              child: image ??
+                  Image(
+                    height: 250,
+                    width: 600,
+                    image: AssetImage('assets/images/login.png'),
+                  ),
             ),
             Card(
               shape: RoundedRectangleBorder(
@@ -152,7 +158,7 @@ class AuthenticationWidget extends StatelessWidget {
                           ),
                     SizedBox(height: 10),
                     CupertinoButton(
-                      color: Colors.blue,
+                      color: buttonColor ?? Colors.cyanAccent,
                       onPressed: () {
                         if (phoneAuthentication == true) {
                           onPhoneLoginPressed!(phoneController.text.trim());
@@ -192,6 +198,7 @@ class AuthenticationWidget extends StatelessWidget {
                         signUpButtonText: signUpButtonText,
                         additionalWidget: additionalWidget,
                         onSignUpPressed: onSignUpPressed,
+                        buttonColor: buttonColor,
                       ),
                     ));
               },

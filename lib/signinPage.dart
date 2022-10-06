@@ -2,8 +2,6 @@
 
 import 'dart:developer';
 
-
-
 import 'package:authentication/EmailLogin/authenticationWidget.dart';
 import 'package:flutter/material.dart';
 
@@ -33,8 +31,10 @@ class _SignInPageState extends State<SignInPage> {
                   log(userEmail);
                   log(userPassword);
                 },
-                phoneAuthentication: true,
+                phoneAuthentication: false,
                 isSignUpVisible: true,
+                buttonColor: Colors.lightBlueAccent,
+                isImageVisible: true,
               )
 
               //     PhoneSignIn(

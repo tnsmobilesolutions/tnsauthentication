@@ -5,15 +5,17 @@ import 'package:flutter/material.dart';
 typedef UserModelParamCallback = Function(userModel user);
 
 class SignUp extends StatelessWidget {
-  SignUp(
-      {Key? key,
-      this.onSignUpPressed,
-      this.signUpButtonText,
-      this.additionalWidget})
-      : super(key: key);
+  SignUp({
+    Key? key,
+    this.onSignUpPressed,
+    this.signUpButtonText,
+    this.additionalWidget,
+    this.buttonColor,
+  }) : super(key: key);
   final UserModelParamCallback? onSignUpPressed;
   Widget? additionalWidget;
   String? signUpButtonText;
+  Color? buttonColor;
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final mobileController = TextEditingController();
@@ -93,7 +95,7 @@ class SignUp extends StatelessWidget {
                 height: 20,
               ),
               CupertinoButton(
-                  color: Colors.blueGrey,
+                  color: buttonColor ?? Colors.blueGrey,
                   child: Text(signUpButtonText ?? 'SignUp'),
                   onPressed: () {
                     final user = userModel(
