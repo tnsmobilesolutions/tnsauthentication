@@ -28,6 +28,7 @@ class AuthenticationWidget extends StatelessWidget {
     this.scaffoldbackGroundColor,
     this.buttonColor,
     this.isImageVisible,
+    this.image,
   }) : super(key: key);
 
   //final VoidCallback? onTap;
