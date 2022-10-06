@@ -13,14 +13,14 @@ typedef ModelParamCallback = Function(userModel user);
 class AuthenticationWidget extends StatelessWidget {
   AuthenticationWidget({
     Key? key,
-    required this.onEmailLoginPressed,
+    this.onEmailLoginPressed,
     required this.isSignUpVisible,
     this.emailFieldhintText,
     this.passwordFieldFieldhintText,
     this.loginButtonText,
     this.title,
     required this.phoneAuthentication,
-    required this.onPhoneLoginPressed,
+    this.onPhoneLoginPressed,
     this.onSignUpPressed,
     this.additionalWidget,
     this.signUpButtonText,
