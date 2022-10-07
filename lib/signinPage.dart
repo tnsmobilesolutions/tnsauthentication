@@ -1,8 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:developer';
-
-import 'package:demo_widget/EmailLogin/authenticationWidget.dart';
+import 'package:authentication/EmailLogin/authenticationWidget.dart';
 import 'package:flutter/material.dart';
 
 class SignInPage extends StatefulWidget {

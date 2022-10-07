@@ -1,4 +1,4 @@
-import 'package:demo_widget/PhoneLogin/PhoneVerificationScreen.dart';
+import 'package:authentication/PhoneLogin/PhoneVerificationScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

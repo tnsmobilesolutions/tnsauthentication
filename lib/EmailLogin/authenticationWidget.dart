@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:demo_widget/EmailLogin/sign_up.dart';
-import 'package:demo_widget/PhoneLogin/PhoneVerificationScreen.dart';
-import 'package:demo_widget/user_model.dart';
+import 'package:authentication/EmailLogin/sign_up.dart';
+import 'package:authentication/PhoneLogin/PhoneVerificationScreen.dart';
+import 'package:authentication/user_model.dart';
+
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,7 @@ class AuthenticationWidget extends StatelessWidget {
     this.scaffoldbackGroundColor,
     this.buttonColor,
     this.isImageVisible,
+    this.image,
   }) : super(key: key);
 
   //final VoidCallback? onTap;
