@@ -2,7 +2,7 @@
 
 import 'dart:developer';
 
-import 'package:authentication/EmailLogin/authenticationWidget.dart';
+import 'package:demo_widget/EmailLogin/authenticationWidget.dart';
 import 'package:flutter/material.dart';
 
 class SignInPage extends StatefulWidget {
@@ -18,7 +18,7 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.yellowAccent,
+        backgroundColor: Colors.yellowAccent.shade100,
         body: Center(
           child: Padding(
               padding: const EdgeInsets.all(20),
@@ -32,7 +32,7 @@ class _SignInPageState extends State<SignInPage> {
                   log(userPassword);
                 },
                 phoneAuthentication: false,
-                isSignUpVisible: true,
+                isSignUpVisible: false,
                 buttonColor: Colors.lightBlueAccent,
                 isImageVisible: true,
               )

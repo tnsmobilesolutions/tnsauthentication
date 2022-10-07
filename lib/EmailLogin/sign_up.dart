@@ -1,4 +1,4 @@
-import 'package:authentication/user_model.dart';
+import 'package:demo_widget/user_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
