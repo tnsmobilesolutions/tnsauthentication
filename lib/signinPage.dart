@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:developer';
+
 import 'package:authentication/EmailLogin/authenticationWidget.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.yellowAccent.shade100,
+        backgroundColor: Colors.yellowAccent,
         body: Center(
           child: Padding(
               padding: const EdgeInsets.all(20),
@@ -31,7 +32,7 @@ class _SignInPageState extends State<SignInPage> {
                   log(userPassword);
                 },
                 phoneAuthentication: false,
-                isSignUpVisible: false,
+                isSignUpVisible: true,
                 buttonColor: Colors.lightBlueAccent,
                 isImageVisible: true,
               )
