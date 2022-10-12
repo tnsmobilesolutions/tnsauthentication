@@ -32,6 +32,8 @@ class _SignInPageState extends State<SignInPage> {
                   log(userPassword);
                 },
                 phoneAuthentication: false,
+                cardLeftPadding: 300,
+                cardRightPadding: 300,
                 isSignUpVisible: true,
                 buttonColor: Colors.lightBlueAccent,
                 isImageVisible: true,
