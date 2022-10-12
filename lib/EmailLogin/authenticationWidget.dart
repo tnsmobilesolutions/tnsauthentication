@@ -52,7 +52,7 @@ class AuthenticationWidget extends StatelessWidget {
 
   double? imageHeight;
   double? imageWidth;
-  AssetImage? loginImage;
+  ImageProvider<Object>? loginImage;
   bool? isImageVisible = false;
   String? emailFieldhintText;
   String? passwordFieldFieldhintText;
