@@ -28,9 +28,11 @@ class AuthenticationWidget extends StatelessWidget {
     this.scaffoldbackGroundColor,
     this.buttonColor,
     this.isImageVisible,
-    this.image,
+    this.loginImage,
     this.cardLeftPadding,
     this.cardRightPadding,
+    this.imageHeight,
+    this.imageWidth,
   }) : super(key: key);
 
   //final VoidCallback? onTap;
@@ -47,7 +49,10 @@ class AuthenticationWidget extends StatelessWidget {
   Color? buttonColor;
   Color? scaffoldbackGroundColor;
   String? title;
-  Image? image;
+
+  double? imageHeight;
+  double? imageWidth;
+  AssetImage? loginImage;
   bool? isImageVisible = false;
   String? emailFieldhintText;
   String? passwordFieldFieldhintText;
@@ -65,12 +70,11 @@ class AuthenticationWidget extends StatelessWidget {
           children: [
             Visibility(
               visible: isImageVisible == true,
-              child: image ??
-                  Image(
-                    height: 250,
-                    width: 600,
-                    image: AssetImage('assets/images/login.png'),
-                  ),
+              child: Image(
+                height: imageHeight ?? 250,
+                width: imageWidth ?? 600,
+                image: loginImage ?? AssetImage('assets/images/login.png'),
+              ),
             ),
             Padding(
               padding: EdgeInsets.fromLTRB(
