@@ -87,7 +87,7 @@ class AuthenticationWidget extends StatelessWidget {
                         ),
                       )
                     : SizedBox(
-                        height: 0,
+                        height: 200,
                         width: 0,
                       ),
                 SizedBox(
