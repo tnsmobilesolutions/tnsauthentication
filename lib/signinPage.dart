@@ -18,12 +18,12 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.yellowAccent,
+        backgroundColor: Colors.white,
         body: Center(
           child: Padding(
               padding: const EdgeInsets.all(20),
               child: AuthenticationWidget(
-                scaffoldbackGroundColor: Colors.white70,
+                scaffoldbackGroundColor: Colors.white,
                 onPhoneLoginPressed: (phoneNumber) {
                   log(phoneNumber);
                 },
@@ -32,11 +32,11 @@ class _SignInPageState extends State<SignInPage> {
                   log(userPassword);
                 },
                 phoneAuthentication: false,
-                cardLeftPadding: 300,
-                cardRightPadding: 300,
+                // cardLeftPadding: 300,
+                // cardRightPadding: 300,
                 isSignUpVisible: true,
                 buttonColor: Colors.lightBlueAccent,
-                isImageVisible: true,
+                isImageVisible: false,
               )
 
               //     PhoneSignIn(
