@@ -38,6 +38,7 @@ class SignUp extends StatelessWidget {
                 controller: nameController,
                 onSaved: (newValue) => nameController,
                 decoration: const InputDecoration(
+                    icon: Icon(Icons.person),
                     hintText: 'Name',
                     hintStyle:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -50,6 +51,7 @@ class SignUp extends StatelessWidget {
                 controller: emailController,
                 onSaved: (newValue) => emailController,
                 decoration: const InputDecoration(
+                    icon: Icon(Icons.email),
                     hintText: 'Enter Your Email',
                     hintStyle:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -62,6 +64,7 @@ class SignUp extends StatelessWidget {
                 controller: mobileController,
                 onSaved: (newValue) => mobileController,
                 decoration: const InputDecoration(
+                    icon: Icon(Icons.phone),
                     hintText: 'Enter Your Mobile Number',
                     hintStyle:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -70,9 +73,11 @@ class SignUp extends StatelessWidget {
               ),
               SizedBox(height: 10),
               TextFormField(
+                obscureText: true,
                 controller: passwordController,
                 onSaved: (newValue) => passwordController,
                 decoration: const InputDecoration(
+                    icon: Icon(Icons.password),
                     hintText: 'Enter Password',
                     hintStyle:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -84,6 +89,7 @@ class SignUp extends StatelessWidget {
                 controller: confirmPasswordController,
                 onSaved: (newValue) => confirmPasswordController,
                 decoration: const InputDecoration(
+                    icon: Icon(Icons.confirmation_num),
                     hintText: 'confirm Password',
                     hintStyle:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
