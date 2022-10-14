@@ -2,7 +2,7 @@ import 'package:authentication/user_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-typedef UserModelParamCallback = Function();
+typedef UserModelParamCallback = Function(userModel user);
 
 class SignUp extends StatelessWidget {
   SignUp({
@@ -104,7 +104,8 @@ class SignUp extends StatelessWidget {
                       password: passwordController.text.trim(),
                       phoneNumber: mobileController.text.trim(),
                     );
-                    onSignUpPressed;
+                    onSignUpPressed != null ? onSignUpPressed!(user) : null;
+                    ;
                   })
             ],
           ),

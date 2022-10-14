@@ -194,8 +194,10 @@ class AuthenticationWidget extends StatelessWidget {
                             color: buttonColor ?? Colors.cyanAccent,
                             onPressed: () {
                               if (phoneAuthentication == true) {
-                                onPhoneLoginPressed!(
-                                    phoneController.text.trim());
+                                onPhoneLoginPressed != null
+                                    ? onPhoneLoginPressed!(
+                                        phoneController.text.trim())
+                                    : null;
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -204,8 +206,10 @@ class AuthenticationWidget extends StatelessWidget {
                                               phoneController.text.trim()),
                                     ));
                               } else {
-                                onEmailLoginPressed!(emailcontroller.text,
-                                    passwordcontroller.text);
+                                onEmailLoginPressed != null
+                                    ? onEmailLoginPressed!(emailcontroller.text,
+                                        passwordcontroller.text)
+                                    : null;
                               }
                             },
                             child: Text(loginButtonText ?? 'Login'),
