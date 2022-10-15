@@ -34,6 +34,9 @@ class AuthenticationWidget extends StatelessWidget {
     this.cardRightPadding,
     this.imageHeight,
     this.imageWidth,
+    this.cardElevation,
+    this.cardHeight,
+    this.cardWidth,
   }) : super(key: key);
 
   //final VoidCallback? onTap;
@@ -52,12 +55,15 @@ class AuthenticationWidget extends StatelessWidget {
   ImageProvider<Object>? image;
   double? imageHeight;
   double? imageWidth;
+  double? cardHeight;
+  double? cardWidth;
   bool? isImageVisible = false;
   String? emailFieldhintText;
   String? passwordFieldFieldhintText;
   String? loginButtonText;
   double? cardLeftPadding;
   double? cardRightPadding;
+  double? cardElevation;
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
@@ -87,21 +93,21 @@ class AuthenticationWidget extends StatelessWidget {
                         ),
                       )
                     : SizedBox(
-                        height: 200,
-                        width: 0,
+                        height: imageHeight ?? 200,
+                        width: imageWidth ?? 0,
                       ),
-                SizedBox(
-                  height: imageHeight ?? 300,
-                  width: imageWidth ?? 600,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    shadowColor: Colors.black,
-                    elevation: 10,
-                    color: cardColor ?? Colors.amberAccent,
-                    child: Padding(
-                      padding: const EdgeInsets.all(30.0),
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  shadowColor: Colors.yellow,
+                  elevation: 10,
+                  color: cardColor ?? Colors.amberAccent,
+                  child: Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child: SizedBox(
+                      height: 300,
+                      width: 600,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
