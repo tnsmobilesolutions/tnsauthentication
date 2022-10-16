@@ -1,6 +1,7 @@
 import 'package:authentication/user_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 typedef UserModelParamCallback = Function(userModel user);
 
@@ -109,6 +110,7 @@ class SignUp extends StatelessWidget {
                       email: emailController.text.trim(),
                       password: passwordController.text.trim(),
                       phoneNumber: mobileController.text.trim(),
+                      userId: const Uuid().v1(),
                     );
                     onSignUpPressed != null ? onSignUpPressed!(user) : null;
                     ;

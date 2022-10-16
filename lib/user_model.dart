@@ -5,12 +5,14 @@ class userModel {
   String? email;
   String? password;
   String? phoneNumber;
+  String? userId;
 
   userModel({
     this.name,
     this.email,
     this.password,
     this.phoneNumber,
+    this.userId,
   });
 
   userModel copyWith({
@@ -18,12 +20,14 @@ class userModel {
     String? email,
     String? password,
     String? phoneNumber,
+    String? userId,
   }) {
     return userModel(
       name: name ?? this.name,
       email: email ?? this.email,
       password: password ?? this.password,
       phoneNumber: phoneNumber ?? this.phoneNumber,
+      userId: userId ?? this.userId,
     );
   }
 
@@ -42,6 +46,9 @@ class userModel {
     if (phoneNumber != null) {
       result.addAll({'phoneNumber': phoneNumber});
     }
+    if (userId != null) {
+      result.addAll({'userId': userId});
+    }
 
     return result;
   }
@@ -52,6 +59,7 @@ class userModel {
       email: map['email'],
       password: map['password'],
       phoneNumber: map['phoneNumber'],
+      userId: map['userId'],
     );
   }
 
@@ -62,7 +70,7 @@ class userModel {
 
   @override
   String toString() {
-    return 'userModel(name: $name, email: $email, password: $password, phoneNumber: $phoneNumber)';
+    return 'userModel(name: $name, email: $email, password: $password, phoneNumber: $phoneNumber, userId: $userId)';
   }
 
   @override
@@ -73,7 +81,8 @@ class userModel {
         other.name == name &&
         other.email == email &&
         other.password == password &&
-        other.phoneNumber == phoneNumber;
+        other.phoneNumber == phoneNumber &&
+        other.userId == userId;
   }
 
   @override
@@ -81,6 +90,7 @@ class userModel {
     return name.hashCode ^
         email.hashCode ^
         password.hashCode ^
-        phoneNumber.hashCode;
+        phoneNumber.hashCode ^
+        userId.hashCode;
   }
 }
