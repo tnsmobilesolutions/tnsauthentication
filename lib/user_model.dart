@@ -3,14 +3,12 @@ import 'dart:convert';
 class userModel {
   String? name;
   String? email;
-  String? password;
   String? phoneNumber;
   String? userId;
 
   userModel({
     this.name,
     this.email,
-    this.password,
     this.phoneNumber,
     this.userId,
   });
@@ -18,14 +16,12 @@ class userModel {
   userModel copyWith({
     String? name,
     String? email,
-    String? password,
     String? phoneNumber,
     String? userId,
   }) {
     return userModel(
       name: name ?? this.name,
       email: email ?? this.email,
-      password: password ?? this.password,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       userId: userId ?? this.userId,
     );
@@ -39,9 +35,6 @@ class userModel {
     }
     if (email != null) {
       result.addAll({'email': email});
-    }
-    if (password != null) {
-      result.addAll({'password': password});
     }
     if (phoneNumber != null) {
       result.addAll({'phoneNumber': phoneNumber});
@@ -57,7 +50,6 @@ class userModel {
     return userModel(
       name: map['name'],
       email: map['email'],
-      password: map['password'],
       phoneNumber: map['phoneNumber'],
       userId: map['userId'],
     );
@@ -70,7 +62,7 @@ class userModel {
 
   @override
   String toString() {
-    return 'userModel(name: $name, email: $email, password: $password, phoneNumber: $phoneNumber, userId: $userId)';
+    return 'userModel(name: $name, email: $email, phoneNumber: $phoneNumber, userId: $userId)';
   }
 
   @override
@@ -80,7 +72,6 @@ class userModel {
     return other is userModel &&
         other.name == name &&
         other.email == email &&
-        other.password == password &&
         other.phoneNumber == phoneNumber &&
         other.userId == userId;
   }
@@ -89,7 +80,6 @@ class userModel {
   int get hashCode {
     return name.hashCode ^
         email.hashCode ^
-        password.hashCode ^
         phoneNumber.hashCode ^
         userId.hashCode;
   }

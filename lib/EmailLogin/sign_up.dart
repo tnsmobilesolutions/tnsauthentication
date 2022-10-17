@@ -1,9 +1,10 @@
 import 'package:authentication/user_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:uuid/uuid.dart';
 
-typedef UserModelParamCallback = Function(userModel user);
+typedef UserModelParamCallback = Function(userModel user, String? password);
 
 class SignUp extends StatelessWidget {
   SignUp({
@@ -22,6 +23,7 @@ class SignUp extends StatelessWidget {
   final mobileController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  final _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +40,15 @@ class SignUp extends StatelessWidget {
               TextFormField(
                 controller: nameController,
                 onSaved: (newValue) => nameController,
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp("[a-z A-Z]"))
+                ],
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter name';
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration(
                     icon: Icon(Icons.person),
                     hintText: 'Name',
@@ -51,6 +62,20 @@ class SignUp extends StatelessWidget {
                 keyboardType: TextInputType.emailAddress,
                 controller: emailController,
                 onSaved: (newValue) => emailController,
+                validator: (value) {
+                  // Returns true if email address is in use.
+
+                  if (value == null || value.isEmpty) {
+                    return ("Please enter Your Email");
+                  }
+                  // reg expression for email validation
+                  else if (!(RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z]+\.[a-zA-Z]+"))
+                      .hasMatch(value)) {
+                    return ("Please enter a valid email");
+                  }
+                  //else if () {}
+                  return null;
+                },
                 decoration: const InputDecoration(
                     icon: Icon(Icons.email),
                     hintText: 'Enter Your Email',
@@ -64,6 +89,16 @@ class SignUp extends StatelessWidget {
                 keyboardType: TextInputType.phone,
                 controller: mobileController,
                 onSaved: (newValue) => mobileController,
+                validator: (value) {
+                  RegExp regex = RegExp(r'^.{10}$');
+                  if (value!.isEmpty) {
+                    return ("Please enter Phone Number");
+                  }
+                  if (!regex.hasMatch(value) && value.length != 10) {
+                    return ("Enter 10 Digit Mobile Number");
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration(
                     icon: Icon(Icons.phone),
                     hintText: 'Enter Your Mobile Number',
@@ -77,6 +112,18 @@ class SignUp extends StatelessWidget {
                 obscureText: true,
                 controller: passwordController,
                 onSaved: (newValue) => passwordController,
+                validator: (value) {
+                  RegExp regex = RegExp(r'^.{6,}$');
+                  if (value == null || value.isEmpty) {
+                    return ("Password length must be atleast 6 characters");
+                  }
+                  if (!regex.hasMatch(value)) {
+                    return ("Enter Valid Password (min 6 character)");
+                  } else if (value.length < 6) {
+                    return 'Password length must be atleast 6 characters';
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration(
                     icon: Icon(Icons.password),
                     hintText: 'Enter Password',
@@ -89,6 +136,13 @@ class SignUp extends StatelessWidget {
               TextFormField(
                 controller: confirmPasswordController,
                 onSaved: (newValue) => confirmPasswordController,
+                validator: (value) {
+                  if (confirmPasswordController.text.trim() !=
+                      passwordController.text.trim()) {
+                    return "Password don't match";
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration(
                     icon: Icon(Icons.confirmation_num),
                     hintText: 'confirm Password',
@@ -105,15 +159,27 @@ class SignUp extends StatelessWidget {
                   color: buttonColor ?? Colors.blueGrey,
                   child: Text(signUpButtonText ?? 'SignUp'),
                   onPressed: () {
-                    final user = userModel(
-                      name: nameController.text.trim(),
-                      email: emailController.text.trim(),
-                      password: passwordController.text.trim(),
-                      phoneNumber: mobileController.text.trim(),
-                      userId: const Uuid().v1(),
-                    );
-                    onSignUpPressed != null ? onSignUpPressed!(user) : null;
-                    ;
+                    if (_formkey.currentState!.validate()) {
+                      final user = userModel(
+                        name: nameController.text.trim(),
+                        email: emailController.text.trim(),
+                        phoneNumber: mobileController.text.trim(),
+                        userId: const Uuid().v1(),
+                      );
+                      onSignUpPressed != null
+                          ? onSignUpPressed!(
+                              user, passwordController.text.trim())
+                          : null;
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          elevation: 6,
+                          backgroundColor: Theme.of(context).iconTheme.color,
+                          behavior: SnackBarBehavior.floating,
+                          content: const Text('Check Again'),
+                        ),
+                      );
+                    }
                   })
             ],
           ),

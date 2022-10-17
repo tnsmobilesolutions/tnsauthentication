@@ -67,6 +67,7 @@ class AuthenticationWidget extends StatelessWidget {
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
+  final _formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -199,23 +200,39 @@ class AuthenticationWidget extends StatelessWidget {
                           CupertinoButton(
                             color: buttonColor ?? Colors.cyanAccent,
                             onPressed: () {
-                              if (phoneAuthentication == true) {
-                                onPhoneLoginPressed != null
-                                    ? onPhoneLoginPressed!(
-                                        phoneController.text.trim())
-                                    : null;
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => VerificationScreen(
-                                          phoneNumber:
-                                              phoneController.text.trim()),
-                                    ));
+                              if (_formkey.currentState!.validate()) {
+                                if (phoneAuthentication == true) {
+                                  onPhoneLoginPressed != null
+                                      ? onPhoneLoginPressed!(
+                                          phoneController.text.trim())
+                                      : null;
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            VerificationScreen(
+                                                phoneNumber: phoneController
+                                                    .text
+                                                    .trim()),
+                                      ));
+                                } else {
+                                  onEmailLoginPressed != null
+                                      ? onEmailLoginPressed!(
+                                          emailcontroller.text,
+                                          passwordcontroller.text)
+                                      : null;
+                                }
                               } else {
-                                onEmailLoginPressed != null
-                                    ? onEmailLoginPressed!(emailcontroller.text,
-                                        passwordcontroller.text)
-                                    : null;
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    elevation: 6,
+                                    backgroundColor:
+                                        Theme.of(context).iconTheme.color,
+                                    behavior: SnackBarBehavior.floating,
+                                    content: const Text(
+                                        'Check Your Email and Password'),
+                                  ),
+                                );
                               }
                             },
                             child: Text(loginButtonText ?? 'Login'),
