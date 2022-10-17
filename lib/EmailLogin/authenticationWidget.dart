@@ -2,13 +2,14 @@
 
 import 'package:authentication/EmailLogin/sign_up.dart';
 import 'package:authentication/PhoneLogin/PhoneVerificationScreen.dart';
-import 'package:authentication/user_model.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 typedef DoubleStringParamCallback<T, E> = Function(T first, E second);
 typedef SingleStringParamCallback = Function(String phoneNumber);
-typedef ModelParamCallback = Function(userModel user);
+typedef ModelParamCallback = Function(String? email, String? password,
+    String? name, String? userId, String? mobile);
 
 class AuthenticationWidget extends StatelessWidget {
   AuthenticationWidget({

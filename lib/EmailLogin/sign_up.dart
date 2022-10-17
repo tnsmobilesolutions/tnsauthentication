@@ -1,10 +1,10 @@
-import 'package:authentication/user_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uuid/uuid.dart';
 
-typedef UserModelParamCallback = Function(userModel user, String? password);
+typedef UserModelParamCallback = Function(String? email, String? password,
+    String? name, String? userId, String? mobile);
 
 class SignUp extends StatelessWidget {
   SignUp({
@@ -163,15 +163,14 @@ class SignUp extends StatelessWidget {
                     onPressed: () {
                       if (_formkey.currentState != null) {
                         if (_formkey.currentState!.validate()) {
-                          final user = userModel(
-                            name: nameController.text.trim(),
-                            email: emailController.text.trim(),
-                            phoneNumber: mobileController.text.trim(),
-                            userId: const Uuid().v1(),
-                          );
                           onSignUpPressed != null
                               ? onSignUpPressed!(
-                                  user, passwordController.text.trim())
+                                  nameController.text.trim(),
+                                  emailController.text.trim(),
+                                  mobileController.text.trim(),
+                                  const Uuid().v1(),
+                                  passwordController.text.trim(),
+                                )
                               : null;
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
