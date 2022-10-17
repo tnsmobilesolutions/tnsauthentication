@@ -79,170 +79,176 @@ class AuthenticationWidget extends StatelessWidget {
             // decoration: BoxDecoration(
             //     border: Border.all(color: Colors.grey),
             //     borderRadius: BorderRadius.circular(10)),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                isImageVisible == true
-                    ? SizedBox(
-                        height: imageHeight ?? 250,
-                        width: imageWidth ?? 600,
-                        child: Image(
-                          // height: imageHeight ?? 150,
-                          // width: imageWidth ?? 600,
-                          image: image ?? AssetImage('assets/images/login.png'),
+            child: Form(
+              key: _formkey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  isImageVisible == true
+                      ? SizedBox(
+                          height: imageHeight ?? 250,
+                          width: imageWidth ?? 600,
+                          child: Image(
+                            // height: imageHeight ?? 150,
+                            // width: imageWidth ?? 600,
+                            image:
+                                image ?? AssetImage('assets/images/login.png'),
+                          ),
+                        )
+                      : SizedBox(
+                          height: imageHeight ?? 200,
+                          width: imageWidth ?? 0,
                         ),
-                      )
-                    : SizedBox(
-                        height: imageHeight ?? 200,
-                        width: imageWidth ?? 0,
-                      ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                  shadowColor: Colors.yellow,
-                  elevation: 10,
-                  color: cardColor ?? Colors.amberAccent,
-                  child: Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: SizedBox(
-                      height: 300,
-                      width: 600,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            title ?? 'Login',
-                            style: TextStyle(
-                                fontSize: 40, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(height: 20),
-                          phoneAuthentication == true
-                              ? TextFormField(
-                                  autofocus: false,
-                                  controller: phoneController,
-                                  keyboardType: TextInputType.phone,
-                                  onSaved: (value) {
-                                    value = phoneController.text;
-                                  },
-                                  textInputAction: TextInputAction.next,
-                                  decoration: const InputDecoration(
-                                    prefixIcon: Icon(Icons.phone),
-                                    contentPadding: EdgeInsets.all(15),
-                                    hintText: 'Phone Number',
-                                  ),
-                                )
-                              : Column(
-                                  children: [
-                                    TextFormField(
-                                      textInputAction: TextInputAction.next,
-                                      validator: (value) {
-                                        if (value == null || value.isEmpty) {
-                                          return ("Please Enter Your Email");
-                                        }
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    shadowColor: Colors.yellow,
+                    elevation: 10,
+                    color: cardColor ?? Colors.amberAccent,
+                    child: Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: SizedBox(
+                        height: 300,
+                        width: 600,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              title ?? 'Login',
+                              style: TextStyle(
+                                  fontSize: 40, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(height: 20),
+                            phoneAuthentication == true
+                                ? TextFormField(
+                                    autofocus: false,
+                                    controller: phoneController,
+                                    keyboardType: TextInputType.phone,
+                                    onSaved: (value) {
+                                      value = phoneController.text;
+                                    },
+                                    textInputAction: TextInputAction.next,
+                                    decoration: const InputDecoration(
+                                      prefixIcon: Icon(Icons.phone),
+                                      contentPadding: EdgeInsets.all(15),
+                                      hintText: 'Phone Number',
+                                    ),
+                                  )
+                                : Column(
+                                    children: [
+                                      TextFormField(
+                                        textInputAction: TextInputAction.next,
+                                        validator: (value) {
+                                          if (value == null || value.isEmpty) {
+                                            return ("Please Enter Your Email");
+                                          }
 
-                                        if (!RegExp(
-                                                "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
-                                            .hasMatch(value)) {
-                                          return ("Please Enter a valid email");
-                                        }
-                                        return null;
-                                      },
-                                      onSaved: (value) {
-                                        emailcontroller.text = value!;
-                                      },
-                                      controller: emailcontroller,
-                                      decoration: InputDecoration(
-                                        contentPadding:
-                                            const EdgeInsets.all(15),
-                                        hintText: emailFieldhintText ?? 'Email',
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
+                                          if (!RegExp(
+                                                  "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                                              .hasMatch(value)) {
+                                            return ("Please Enter a valid email");
+                                          }
+                                          return null;
+                                        },
+                                        onSaved: (value) {
+                                          emailcontroller.text = value!;
+                                        },
+                                        controller: emailcontroller,
+                                        decoration: InputDecoration(
+                                          contentPadding:
+                                              const EdgeInsets.all(15),
+                                          hintText:
+                                              emailFieldhintText ?? 'Email',
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(height: 10),
-                                    TextFormField(
-                                      autofocus: false,
-                                      controller: passwordcontroller,
-                                      obscureText: true,
-                                      validator: (value) {
-                                        RegExp regex = RegExp(r'^.{6,}$');
-                                        if (value!.isEmpty) {
-                                          return ("Password is required for login");
-                                        }
-                                        if (!regex.hasMatch(value)) {
-                                          return ("Enter Valid Password(Min. 6 Character)");
-                                        }
-                                        return null;
-                                      },
-                                      onSaved: (value) {
-                                        passwordcontroller.text = value!;
-                                      },
-                                      textInputAction: TextInputAction.done,
-                                      decoration: InputDecoration(
-                                        contentPadding:
-                                            const EdgeInsets.all(15),
-                                        hintText: passwordFieldFieldhintText ??
-                                            'Password',
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
+                                      SizedBox(height: 10),
+                                      TextFormField(
+                                        autofocus: false,
+                                        controller: passwordcontroller,
+                                        obscureText: true,
+                                        validator: (value) {
+                                          RegExp regex = RegExp(r'^.{6,}$');
+                                          if (value!.isEmpty) {
+                                            return ("Password is required for login");
+                                          }
+                                          if (!regex.hasMatch(value)) {
+                                            return ("Enter Valid Password(Min. 6 Character)");
+                                          }
+                                          return null;
+                                        },
+                                        onSaved: (value) {
+                                          passwordcontroller.text = value!;
+                                        },
+                                        textInputAction: TextInputAction.done,
+                                        decoration: InputDecoration(
+                                          contentPadding:
+                                              const EdgeInsets.all(15),
+                                          hintText:
+                                              passwordFieldFieldhintText ??
+                                                  'Password',
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                          SizedBox(height: 10),
-                          CupertinoButton(
-                            color: buttonColor ?? Colors.cyanAccent,
-                            onPressed: () {
-                              if (_formkey.currentState!.validate()) {
-                                if (phoneAuthentication == true) {
-                                  onPhoneLoginPressed != null
-                                      ? onPhoneLoginPressed!(
-                                          phoneController.text.trim())
-                                      : null;
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            VerificationScreen(
-                                                phoneNumber: phoneController
-                                                    .text
-                                                    .trim()),
-                                      ));
-                                } else {
-                                  onEmailLoginPressed != null
-                                      ? onEmailLoginPressed!(
-                                          emailcontroller.text,
-                                          passwordcontroller.text)
-                                      : null;
-                                }
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    elevation: 6,
-                                    backgroundColor:
-                                        Theme.of(context).iconTheme.color,
-                                    behavior: SnackBarBehavior.floating,
-                                    content: const Text(
-                                        'Check Your Email and Password'),
+                                    ],
                                   ),
-                                );
-                              }
-                            },
-                            child: Text(loginButtonText ?? 'Login'),
-                          ),
-                        ],
+                            SizedBox(height: 10),
+                            CupertinoButton(
+                              color: buttonColor ?? Colors.cyanAccent,
+                              onPressed: () {
+                                if (_formkey.currentState!.validate()) {
+                                  if (phoneAuthentication == true) {
+                                    onPhoneLoginPressed != null
+                                        ? onPhoneLoginPressed!(
+                                            phoneController.text.trim())
+                                        : null;
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              VerificationScreen(
+                                                  phoneNumber: phoneController
+                                                      .text
+                                                      .trim()),
+                                        ));
+                                  } else {
+                                    onEmailLoginPressed != null
+                                        ? onEmailLoginPressed!(
+                                            emailcontroller.text,
+                                            passwordcontroller.text)
+                                        : null;
+                                  }
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      elevation: 6,
+                                      backgroundColor:
+                                          Theme.of(context).iconTheme.color,
+                                      behavior: SnackBarBehavior.floating,
+                                      content: const Text(
+                                          'Check Your Email and Password'),
+                                    ),
+                                  );
+                                }
+                              },
+                              child: Text(loginButtonText ?? 'Login'),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
