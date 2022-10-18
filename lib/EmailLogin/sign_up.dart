@@ -165,11 +165,14 @@ class SignUp extends StatelessWidget {
                         if (_formkey.currentState!.validate()) {
                           onSignUpPressed != null
                               ? onSignUpPressed!(
-                                  nameController.text.trim(),
+                                  //                             String? email, String? password,
+                                  // String? name, String? userId, String? mobile
+
                                   emailController.text.trim(),
-                                  mobileController.text.trim(),
-                                  const Uuid().v1(),
                                   passwordController.text.trim(),
+                                  nameController.text.trim(),
+                                  const Uuid().v1(),
+                                  mobileController.text.trim(),
                                 )
                               : null;
                         } else {
