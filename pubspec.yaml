@@ -11,7 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
   pinput: ^2.2.12
-  uuid: ^3.0.6  
+  uuid: ^3.0.6
+  shared_preferences: ^2.0.15
+  local_auth: ^2.1.2
 
 dev_dependencies:
   flutter_test:

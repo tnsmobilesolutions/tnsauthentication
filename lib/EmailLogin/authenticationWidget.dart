@@ -38,6 +38,7 @@ class AuthenticationWidget extends StatelessWidget {
     this.cardElevation,
     this.cardHeight,
     this.cardWidth,
+    this.isBiometricAvailable,
   }) : super(key: key);
 
   //final VoidCallback? onTap;
@@ -59,6 +60,7 @@ class AuthenticationWidget extends StatelessWidget {
   double? cardHeight;
   double? cardWidth;
   bool? isImageVisible = false;
+  bool? isBiometricAvailable = false;
   String? emailFieldhintText;
   String? passwordFieldFieldhintText;
   String? loginButtonText;
@@ -111,8 +113,8 @@ class AuthenticationWidget extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(30.0),
                       child: SizedBox(
-                        height: 300,
-                        width: 600,
+                        height: cardHeight ?? 300,
+                        width: cardWidth ?? 300,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -243,6 +245,32 @@ class AuthenticationWidget extends StatelessWidget {
                               },
                               child: Text(loginButtonText ?? 'Login'),
                             ),
+                            isBiometricAvailable == true
+                                ? CupertinoButton(
+                                    child:
+                                        const Icon(Icons.fingerprint, size: 50),
+                                    onPressed: () async {
+                                      // _getAuthentication();
+                                      // if (mounted) {
+                                      //   final encryptEmail =
+                                      //       await SharedPreference()
+                                      //           .getStringValuesSF('email');
+                                      //   final encryptPassword =
+                                      //       await SharedPreference()
+                                      //           .getStringValuesSF('password');
+                                      //   final decryptEmail = await EncryptData()
+                                      //       .decryptAES(encryptEmail);
+                                      //   final decryptpassword =
+                                      //       await EncryptData()
+                                      //           .decryptAES(encryptPassword);
+                                      //   log('$encryptEmail, $decryptEmail, $encryptPassword, $decryptpassword');
+                                      //   BlocProvider.of<LoginBloc>(context).add(
+                                      //       LoginButtonEvent(
+                                      //           email: decryptEmail.toString(),
+                                      //           password:
+                                      //               decryptpassword.toString()));
+                                    })
+                                : SizedBox(height: 0, width: 0),
                           ],
                         ),
                       ),
