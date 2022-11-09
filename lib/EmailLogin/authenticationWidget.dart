@@ -138,6 +138,13 @@ class AuthenticationWidget extends StatelessWidget {
                                       prefixIcon: Icon(Icons.phone),
                                       contentPadding: EdgeInsets.all(15),
                                       hintText: 'Phone Number',
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: buttonColor ?? Colors.white,
+                                            width: 2.0),
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                      ),
                                       border: OutlineInputBorder(
                                         borderSide: BorderSide(
                                             color: buttonColor ??
@@ -167,6 +174,14 @@ class AuthenticationWidget extends StatelessWidget {
                                         },
                                         controller: emailcontroller,
                                         decoration: InputDecoration(
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color:
+                                                    buttonColor ?? Colors.white,
+                                                width: 2.0),
+                                            borderRadius:
+                                                BorderRadius.circular(25.0),
+                                          ),
                                           contentPadding:
                                               const EdgeInsets.all(15),
                                           hintText:
@@ -200,6 +215,14 @@ class AuthenticationWidget extends StatelessWidget {
                                         },
                                         textInputAction: TextInputAction.done,
                                         decoration: InputDecoration(
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color:
+                                                    buttonColor ?? Colors.white,
+                                                width: 2.0),
+                                            borderRadius:
+                                                BorderRadius.circular(25.0),
+                                          ),
                                           contentPadding:
                                               const EdgeInsets.all(15),
                                           hintText:
