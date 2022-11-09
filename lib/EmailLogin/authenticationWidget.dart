@@ -133,11 +133,19 @@ class AuthenticationWidget extends StatelessWidget {
                                     onSaved: (value) {
                                       value = phoneController.text;
                                     },
+
                                     textInputAction: TextInputAction.next,
-                                    decoration: const InputDecoration(
+                                    decoration:  InputDecoration(
                                       prefixIcon: Icon(Icons.phone),
                                       contentPadding: EdgeInsets.all(15),
                                       hintText: 'Phone Number',
+                                      border: OutlineInputBorder(
+                                           borderSide: BorderSide(color:buttonColor?? Colors.greenAccent), 
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                                
+                                          ),
+                                      
                                     ),
                                   )
                                 : Column(
@@ -166,8 +174,10 @@ class AuthenticationWidget extends StatelessWidget {
                                           hintText:
                                               emailFieldhintText ?? 'Email',
                                           border: OutlineInputBorder(
+                                           borderSide: BorderSide(color:buttonColor?? Colors.greenAccent), 
                                             borderRadius:
                                                 BorderRadius.circular(15),
+                                                
                                           ),
                                         ),
                                       ),
@@ -197,8 +207,10 @@ class AuthenticationWidget extends StatelessWidget {
                                               passwordFieldFieldhintText ??
                                                   'Password',
                                           border: OutlineInputBorder(
+                                            
                                             borderRadius:
                                                 BorderRadius.circular(15),
+                                                borderSide: BorderSide(width: 3, color:buttonColor?? Colors.greenAccent),
                                           ),
                                         ),
                                       ),
@@ -304,6 +316,7 @@ class AuthenticationWidget extends StatelessWidget {
               },
               child: Text(
                 'SignUp',
+                style: TextStyle(color:buttonColor ?? Colors.cyanAccent)),
               ),
             )
           ],
