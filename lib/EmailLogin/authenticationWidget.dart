@@ -12,34 +12,36 @@ typedef ModelParamCallback = Function(String? email, String? password,
     String? name, String? userId, String? mobile);
 
 class AuthenticationWidget extends StatelessWidget {
-  AuthenticationWidget({
-    Key? key,
-    this.buttonColor,
-    this.additionalWidget,
-    this.image,
-    this.onEmailLoginPressed,
-    required this.isSignUpVisible,
-    this.emailFieldhintText,
-    this.passwordFieldFieldhintText,
-    this.loginButtonText,
-    this.title,
-    required this.phoneAuthentication,
-    this.onPhoneLoginPressed,
-    this.onSignUpPressed,
-    this.signUpButtonText,
-    this.cardColor,
-    this.scaffoldbackGroundColor,
-    this.isImageVisible,
-    this.loginImage,
-    this.cardLeftPadding,
-    this.cardRightPadding,
-    this.imageHeight,
-    this.imageWidth,
-    this.cardElevation,
-    this.cardHeight,
-    this.cardWidth,
-    this.isBiometricAvailable,
-  }) : super(key: key);
+  AuthenticationWidget(
+      {Key? key,
+      this.buttonColor,
+      this.additionalWidget,
+      this.image,
+      this.onEmailLoginPressed,
+      required this.isSignUpVisible,
+      this.emailFieldhintText,
+      this.passwordFieldFieldhintText,
+      this.loginButtonText,
+      this.title,
+      required this.phoneAuthentication,
+      this.onPhoneLoginPressed,
+      this.onSignUpPressed,
+      this.signUpButtonText,
+      this.cardColor,
+      this.scaffoldbackGroundColor,
+      this.isImageVisible,
+      this.loginImage,
+      this.cardLeftPadding,
+      this.cardRightPadding,
+      this.imageHeight,
+      this.imageWidth,
+      this.cardElevation,
+      this.cardHeight,
+      this.cardWidth,
+      this.isBiometricAvailable,
+      this.titleTextColor,
+      this.loginButonTextColor})
+      : super(key: key);
 
   //final VoidCallback? onTap;
   bool phoneAuthentication = false;
@@ -52,6 +54,8 @@ class AuthenticationWidget extends StatelessWidget {
   Color? cardColor;
   Color? buttonColor;
   Color? scaffoldbackGroundColor;
+  Color? titleTextColor;
+  Color? loginButonTextColor;
   String? title;
   AssetImage? loginImage;
   ImageProvider<Object>? image;
@@ -122,7 +126,9 @@ class AuthenticationWidget extends StatelessWidget {
                             Text(
                               title ?? 'Login',
                               style: TextStyle(
-                                  fontSize: 40, fontWeight: FontWeight.bold),
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.bold,
+                                  color: titleTextColor ?? Colors.black),
                             ),
                             SizedBox(height: 20),
                             phoneAuthentication == true
@@ -279,7 +285,11 @@ class AuthenticationWidget extends StatelessWidget {
                                   );
                                 }
                               },
-                              child: Text(loginButtonText ?? 'Login'),
+                              child: Text(
+                                loginButtonText ?? 'Login',
+                                style: TextStyle(
+                                    color: loginButonTextColor ?? Colors.black),
+                              ),
                             ),
                             isBiometricAvailable == true
                                 ? CupertinoButton(
