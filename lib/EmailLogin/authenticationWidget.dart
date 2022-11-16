@@ -175,7 +175,7 @@ class AuthenticationWidget extends StatelessWidget {
                                       border: OutlineInputBorder(
                                         borderSide: BorderSide(
                                             color: textFieldBorderColor ??
-                                                Colors.greenAccent),
+                                                Colors.white),
                                         borderRadius: BorderRadius.circular(15),
                                       ),
                                     ),
@@ -204,7 +204,7 @@ class AuthenticationWidget extends StatelessWidget {
                                           focusedBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
                                                 color: textFieldBorderColor ??
-                                                    Colors.black,
+                                                    Colors.white,
                                                 width: 2.0),
                                             borderRadius:
                                                 BorderRadius.circular(25.0),
@@ -217,7 +217,7 @@ class AuthenticationWidget extends StatelessWidget {
                                           border: OutlineInputBorder(
                                             borderSide: BorderSide(
                                                 color: textFieldBorderColor ??
-                                                    Colors.black),
+                                                    Colors.white),
                                             borderRadius:
                                                 BorderRadius.circular(15),
                                           ),
