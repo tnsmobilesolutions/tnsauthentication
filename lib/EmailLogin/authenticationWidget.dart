@@ -39,11 +39,14 @@ class AuthenticationWidget extends StatelessWidget {
     this.cardHeight,
     this.cardWidth,
     this.isBiometricAvailable,
-    this.titleTextColor,
     this.loginButonTextColor,
     this.textFieldBorderColor,
     this.textfieldHintColor,
     this.loginPageTextStyle,
+    this.phoneHinttext,
+    this.phoneHintTextStyle,
+    this.emailHintTextStyle,
+    this.passwordHintTextStyle,
   }) : super(key: key);
 
   //final VoidCallback? onTap;
@@ -57,7 +60,7 @@ class AuthenticationWidget extends StatelessWidget {
   Color? cardColor;
   Color? buttonColor;
   Color? scaffoldbackGroundColor;
-  Color? titleTextColor;
+  // InputDecoration? textformFieldInputDecoration;
   Color? loginButonTextColor;
   Color? textFieldBorderColor;
   Color? textfieldHintColor;
@@ -73,7 +76,12 @@ class AuthenticationWidget extends StatelessWidget {
   bool? isBiometricAvailable = false;
   String? emailFieldhintText;
   String? passwordFieldFieldhintText;
+  String? phoneHinttext;
   String? loginButtonText;
+  TextStyle? phoneHintTextStyle;
+  TextStyle? emailHintTextStyle;
+  TextStyle? passwordHintTextStyle;
+  TextStyle? loginButtonTextStyle;
 
   double? cardLeftPadding;
   double? cardRightPadding;
@@ -151,13 +159,15 @@ class AuthenticationWidget extends StatelessWidget {
                                     decoration: InputDecoration(
                                       prefixIcon: Icon(Icons.phone),
                                       contentPadding: EdgeInsets.all(15),
-                                      hintText: 'Phone Number',
-                                      hintStyle: TextStyle(
-                                          color: textfieldHintColor ??
-                                              Colors.black),
+                                      hintText: phoneHinttext ?? 'Phone Number',
+                                      hintStyle: phoneHintTextStyle ??
+                                          TextStyle(
+                                              color: textfieldHintColor ??
+                                                  Colors.black),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: buttonColor ?? Colors.white,
+                                            color: textFieldBorderColor ??
+                                                Colors.white,
                                             width: 2.0),
                                         borderRadius:
                                             BorderRadius.circular(25.0),
@@ -203,6 +213,7 @@ class AuthenticationWidget extends StatelessWidget {
                                               const EdgeInsets.all(15),
                                           hintText:
                                               emailFieldhintText ?? 'Email',
+                                          hintStyle: emailHintTextStyle,
                                           border: OutlineInputBorder(
                                             borderSide: BorderSide(
                                                 color: textFieldBorderColor ??
@@ -234,8 +245,8 @@ class AuthenticationWidget extends StatelessWidget {
                                         decoration: InputDecoration(
                                           focusedBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
-                                                color:
-                                                    buttonColor ?? Colors.white,
+                                                color: textFieldBorderColor ??
+                                                    Colors.white,
                                                 width: 2.0),
                                             borderRadius:
                                                 BorderRadius.circular(25.0),
@@ -245,6 +256,7 @@ class AuthenticationWidget extends StatelessWidget {
                                           hintText:
                                               passwordFieldFieldhintText ??
                                                   'Password',
+                                          hintStyle: passwordHintTextStyle,
                                           border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(15),
@@ -298,8 +310,10 @@ class AuthenticationWidget extends StatelessWidget {
                               },
                               child: Text(
                                 loginButtonText ?? 'Login',
-                                style: TextStyle(
-                                    color: loginButonTextColor ?? Colors.black),
+                                style: loginButtonTextStyle ??
+                                    TextStyle(
+                                        color: loginButonTextColor ??
+                                            Colors.black),
                               ),
                             ),
                             isBiometricAvailable == true
