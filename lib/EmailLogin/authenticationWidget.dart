@@ -12,38 +12,39 @@ typedef ModelParamCallback = Function(String? email, String? password,
     String? name, String? userId, String? mobile);
 
 class AuthenticationWidget extends StatelessWidget {
-  AuthenticationWidget(
-      {Key? key,
-      this.buttonColor,
-      this.additionalWidget,
-      this.image,
-      this.onEmailLoginPressed,
-      required this.isSignUpVisible,
-      this.emailFieldhintText,
-      this.passwordFieldFieldhintText,
-      this.loginButtonText,
-      this.title,
-      required this.phoneAuthentication,
-      this.onPhoneLoginPressed,
-      this.onSignUpPressed,
-      this.signUpButtonText,
-      this.cardColor,
-      this.scaffoldbackGroundColor,
-      this.isImageVisible,
-      this.loginImage,
-      this.cardLeftPadding,
-      this.cardRightPadding,
-      this.imageHeight,
-      this.imageWidth,
-      this.cardElevation,
-      this.cardHeight,
-      this.cardWidth,
-      this.isBiometricAvailable,
-      this.titleTextColor,
-      this.loginButonTextColor,
-      this.textFieldBorderColor,
-      this.textfieldHintColor})
-      : super(key: key);
+  AuthenticationWidget({
+    Key? key,
+    this.buttonColor,
+    this.additionalWidget,
+    this.image,
+    this.onEmailLoginPressed,
+    required this.isSignUpVisible,
+    this.emailFieldhintText,
+    this.passwordFieldFieldhintText,
+    this.loginButtonText,
+    this.title,
+    required this.phoneAuthentication,
+    this.onPhoneLoginPressed,
+    this.onSignUpPressed,
+    this.signUpButtonText,
+    this.cardColor,
+    this.scaffoldbackGroundColor,
+    this.isImageVisible,
+    this.loginImage,
+    this.cardLeftPadding,
+    this.cardRightPadding,
+    this.imageHeight,
+    this.imageWidth,
+    this.cardElevation,
+    this.cardHeight,
+    this.cardWidth,
+    this.isBiometricAvailable,
+    this.titleTextColor,
+    this.loginButonTextColor,
+    this.textFieldBorderColor,
+    this.textfieldHintColor,
+    this.loginPageTextStyle,
+  }) : super(key: key);
 
   //final VoidCallback? onTap;
   bool phoneAuthentication = false;
@@ -60,6 +61,7 @@ class AuthenticationWidget extends StatelessWidget {
   Color? loginButonTextColor;
   Color? textFieldBorderColor;
   Color? textfieldHintColor;
+  TextStyle? loginPageTextStyle;
   String? title;
   AssetImage? loginImage;
   ImageProvider<Object>? image;
@@ -72,6 +74,7 @@ class AuthenticationWidget extends StatelessWidget {
   String? emailFieldhintText;
   String? passwordFieldFieldhintText;
   String? loginButtonText;
+
   double? cardLeftPadding;
   double? cardRightPadding;
   double? cardElevation;
@@ -129,10 +132,11 @@ class AuthenticationWidget extends StatelessWidget {
                           children: [
                             Text(
                               title ?? 'Login',
-                              style: TextStyle(
-                                  fontSize: 40,
-                                  fontWeight: FontWeight.bold,
-                                  color: titleTextColor ?? Colors.black),
+                              style: loginPageTextStyle,
+                              // TextStyle(
+                              //     fontSize: 40,
+                              //     fontWeight: FontWeight.bold,
+                              //     color: titleTextColor ?? Colors.black),
                             ),
                             SizedBox(height: 20),
                             phoneAuthentication == true
