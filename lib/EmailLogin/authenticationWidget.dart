@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:ui';
+
 import 'package:authentication/EmailLogin/sign_up.dart';
 import 'package:authentication/PhoneLogin/PhoneVerificationScreen.dart';
 
@@ -183,6 +185,8 @@ class AuthenticationWidget extends StatelessWidget {
                                 : Column(
                                     children: [
                                       TextFormField(
+                                        style: emailHintTextStyle ??
+                                            TextStyle(color: Colors.black),
                                         textInputAction: TextInputAction.next,
                                         validator: (value) {
                                           if (value == null || value.isEmpty) {
@@ -225,6 +229,8 @@ class AuthenticationWidget extends StatelessWidget {
                                       ),
                                       SizedBox(height: 10),
                                       TextFormField(
+                                        style: passwordHintTextStyle ??
+                                            TextStyle(color: Colors.black),
                                         autofocus: false,
                                         controller: passwordcontroller,
                                         obscureText: true,
