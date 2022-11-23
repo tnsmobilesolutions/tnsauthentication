@@ -247,6 +247,11 @@ class AuthenticationWidget extends StatelessWidget {
                                         onSaved: (value) {
                                           passwordcontroller.text = value!;
                                         },
+                                        onFieldSubmitted: (value) {
+                                          onEmailLoginPressed!(
+                                              emailcontroller.text,
+                                              passwordcontroller.text);
+                                        },
                                         textInputAction: TextInputAction.done,
                                         decoration: InputDecoration(
                                           focusedBorder: OutlineInputBorder(
