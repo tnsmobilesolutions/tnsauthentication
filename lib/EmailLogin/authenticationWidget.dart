@@ -128,8 +128,8 @@ class AuthenticationWidget extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0),
                     ),
-                    shadowColor: buttonColor ?? Colors.yellow,
-                    elevation: 10,
+                    shadowColor: buttonColor ?? cardColor,
+                    elevation: cardElevation ?? 10,
                     color: cardColor ?? Colors.amberAccent,
                     child: Padding(
                       padding: const EdgeInsets.all(30.0),
