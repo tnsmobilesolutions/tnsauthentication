@@ -14,46 +14,48 @@ typedef ModelParamCallback = Function(String? email, String? password,
     String? name, String? userId, String? mobile);
 
 class AuthenticationWidget extends StatelessWidget {
-  AuthenticationWidget({
-    Key? key,
-    this.buttonColor,
-    this.additionalWidget,
-    this.image,
-    this.onEmailLoginPressed,
-    required this.isSignUpVisible,
-    this.emailFieldhintText,
-    this.passwordFieldFieldhintText,
-    this.loginButtonText,
-    this.title,
-    required this.phoneAuthentication,
-    this.onPhoneLoginPressed,
-    this.onSignUpPressed,
-    this.signUpButtonText,
-    this.cardColor,
-    this.scaffoldbackGroundColor,
-    this.isImageVisible,
-    this.loginImage,
-    this.cardLeftPadding,
-    this.cardRightPadding,
-    this.imageHeight,
-    this.imageWidth,
-    this.cardElevation,
-    this.cardHeight,
-    this.cardWidth,
-    this.isBiometricAvailable,
-    this.loginButonTextColor,
-    this.textFieldBorderColor,
-    this.textfieldHintColor,
-    this.loginPageTextStyle,
-    this.phoneHinttext,
-    this.phoneHintTextStyle,
-    this.emailHintTextStyle,
-    this.passwordHintTextStyle,
-  }) : super(key: key);
+  AuthenticationWidget(
+      {Key? key,
+      this.buttonColor,
+      this.additionalWidget,
+      this.image,
+      this.onEmailLoginPressed,
+      required this.isSignUpVisible,
+      this.emailFieldhintText,
+      this.passwordFieldFieldhintText,
+      this.loginButtonText,
+      this.title,
+      required this.phoneAuthentication,
+      this.onPhoneLoginPressed,
+      this.onSignUpPressed,
+      this.signUpButtonText,
+      this.cardColor,
+      this.scaffoldbackGroundColor,
+      this.isImageVisible,
+      this.loginImage,
+      this.cardLeftPadding,
+      this.cardRightPadding,
+      this.imageHeight,
+      this.imageWidth,
+      this.cardElevation,
+      this.cardHeight,
+      this.cardWidth,
+      this.isBiometricAvailable,
+      this.loginButonTextColor,
+      this.textFieldBorderColor,
+      this.textfieldHintColor,
+      this.loginPageTextStyle,
+      this.phoneHinttext,
+      this.phoneHintTextStyle,
+      this.emailHintTextStyle,
+      this.passwordHintTextStyle,
+      this.signupAppBarText})
+      : super(key: key);
 
   //final VoidCallback? onTap;
   bool phoneAuthentication = false;
   String? signUpButtonText;
+  String? signupAppBarText;
   final DoubleStringParamCallback? onEmailLoginPressed;
   final SingleStringParamCallback? onPhoneLoginPressed;
   final UserModelParamCallback? onSignUpPressed;
@@ -381,6 +383,7 @@ class AuthenticationWidget extends StatelessWidget {
                         additionalWidget: additionalWidget,
                         onSignUpPressed: onSignUpPressed,
                         buttonColor: buttonColor,
+                        signupAppBarText: signupAppBarText,
                       ),
                     ));
               },

@@ -7,17 +7,19 @@ typedef UserModelParamCallback = Function(String? email, String? password,
     String? name, String? userId, String? mobile);
 
 class SignUp extends StatelessWidget {
-  SignUp({
-    Key? key,
-    this.onSignUpPressed,
-    this.signUpButtonText,
-    this.additionalWidget,
-    this.buttonColor,
-  }) : super(key: key);
+  SignUp(
+      {Key? key,
+      this.onSignUpPressed,
+      this.signUpButtonText,
+      this.additionalWidget,
+      this.buttonColor,
+      this.signupAppBarText})
+      : super(key: key);
   final UserModelParamCallback? onSignUpPressed;
   Widget? additionalWidget;
   String? signUpButtonText;
   Color? buttonColor;
+  String? signupAppBarText;
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final mobileController = TextEditingController();
@@ -28,7 +30,7 @@ class SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('signUp'),
+        title: Text(signupAppBarText ?? 'Signup'),
       ),
       body: SafeArea(
           child: Padding(
