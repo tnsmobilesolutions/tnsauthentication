@@ -49,7 +49,9 @@ class AuthenticationWidget extends StatelessWidget {
       this.phoneHintTextStyle,
       this.emailHintTextStyle,
       this.passwordHintTextStyle,
-      this.signupAppBarText})
+      this.signupAppBarText,
+      this.needConfirmPasswordinSignup,
+      this.loginButtonTextStyle})
       : super(key: key);
 
   //final VoidCallback? onTap;
@@ -64,6 +66,7 @@ class AuthenticationWidget extends StatelessWidget {
   Color? cardColor;
   Color? buttonColor;
   Color? scaffoldbackGroundColor;
+  bool? needConfirmPasswordinSignup;
   // InputDecoration? textformFieldInputDecoration;
   Color? loginButonTextColor;
   Color? textFieldBorderColor;
@@ -384,6 +387,8 @@ class AuthenticationWidget extends StatelessWidget {
                         onSignUpPressed: onSignUpPressed,
                         buttonColor: buttonColor,
                         signupAppBarText: signupAppBarText,
+                        needConfirmPasswordinSignup:
+                            needConfirmPasswordinSignup,
                       ),
                     ));
               },

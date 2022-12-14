@@ -6,31 +6,47 @@ import 'package:uuid/uuid.dart';
 typedef UserModelParamCallback = Function(String? email, String? password,
     String? name, String? userId, String? mobile);
 
-class SignUp extends StatelessWidget {
-  SignUp(
-      {Key? key,
-      this.onSignUpPressed,
-      this.signUpButtonText,
-      this.additionalWidget,
-      this.buttonColor,
-      this.signupAppBarText})
-      : super(key: key);
+class SignUp extends StatefulWidget {
+  SignUp({
+    Key? key,
+    this.onSignUpPressed,
+    this.signUpButtonText,
+    this.additionalWidget,
+    this.buttonColor,
+    this.needConfirmPasswordinSignup,
+    this.signupAppBarText,
+  }) : super(key: key);
   final UserModelParamCallback? onSignUpPressed;
   Widget? additionalWidget;
   String? signUpButtonText;
   Color? buttonColor;
   String? signupAppBarText;
+  bool? needConfirmPasswordinSignup;
+
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+  bool ispasswordVisible = false;
+
   final nameController = TextEditingController();
+
   final emailController = TextEditingController();
+
   final mobileController = TextEditingController();
+
   final passwordController = TextEditingController();
+
   final confirmPasswordController = TextEditingController();
+
   final _formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(signupAppBarText ?? 'Signup'),
+        title: Text(widget.signupAppBarText ?? 'Signup'),
       ),
       body: SafeArea(
           child: Padding(
@@ -113,7 +129,7 @@ class SignUp extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
                 TextFormField(
-                  obscureText: true,
+                  obscureText: ispasswordVisible,
                   controller: passwordController,
                   onSaved: (newValue) => passwordController,
                   validator: (value) {
@@ -128,7 +144,21 @@ class SignUp extends StatelessWidget {
                     }
                     return null;
                   },
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          // Based on passwordVisible state choose the icon
+                          ispasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Colors.blue,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            ispasswordVisible = !ispasswordVisible;
+                          });
+                        },
+                      ),
                       icon: Icon(Icons.password),
                       hintText: 'Enter Password',
                       hintStyle:
@@ -137,36 +167,51 @@ class SignUp extends StatelessWidget {
                       focusColor: Colors.grey),
                 ),
                 SizedBox(height: 10),
-                TextFormField(
-                  controller: confirmPasswordController,
-                  onSaved: (newValue) => confirmPasswordController,
-                  validator: (value) {
-                    if (confirmPasswordController.text.trim() !=
-                        passwordController.text.trim()) {
-                      return "Password don't match";
-                    }
-                    return null;
-                  },
-                  decoration: const InputDecoration(
-                      icon: Icon(Icons.confirmation_num),
-                      hintText: 'confirm Password',
-                      hintStyle:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                      fillColor: Colors.grey,
-                      focusColor: Colors.grey),
-                ),
-                additionalWidget ?? const SizedBox(height: 0),
+                if (widget.needConfirmPasswordinSignup == true)
+                  TextFormField(
+                    controller: confirmPasswordController,
+                    onSaved: (newValue) => confirmPasswordController,
+                    validator: (value) {
+                      if (confirmPasswordController.text.trim() !=
+                          passwordController.text.trim()) {
+                        return "Password don't match";
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            // Based on passwordVisible state choose the icon
+                            ispasswordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Colors.blue,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              ispasswordVisible = !ispasswordVisible;
+                            });
+                          },
+                        ),
+                        icon: Icon(Icons.password),
+                        hintText: 'confirm Password',
+                        hintStyle: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                        fillColor: Colors.grey,
+                        focusColor: Colors.grey),
+                  ),
+                widget.additionalWidget ?? const SizedBox(height: 0),
                 SizedBox(
                   height: 20,
                 ),
                 CupertinoButton(
-                    color: buttonColor ?? Colors.blueGrey,
-                    child: Text(signUpButtonText ?? 'SignUp'),
+                    color: widget.buttonColor ?? Colors.blueGrey,
+                    child: Text(widget.signUpButtonText ?? 'SignUp'),
                     onPressed: () {
                       if (_formkey.currentState != null) {
                         if (_formkey.currentState!.validate()) {
-                          onSignUpPressed != null
-                              ? onSignUpPressed!(
+                          widget.onSignUpPressed != null
+                              ? widget.onSignUpPressed!(
                                   emailController.text.trim(),
                                   passwordController.text.trim(),
                                   nameController.text.trim(),
