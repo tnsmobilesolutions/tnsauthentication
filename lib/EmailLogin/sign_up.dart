@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,8 +17,10 @@ class SignUp extends StatefulWidget {
     this.buttonColor,
     this.needConfirmPasswordinSignup,
     this.signupAppBarText,
+    this.shouldEmailAuthentication,
   }) : super(key: key);
   final UserModelParamCallback? onSignUpPressed;
+  bool? shouldEmailAuthentication;
   Widget? additionalWidget;
   String? signUpButtonText;
   Color? buttonColor;
@@ -57,26 +61,28 @@ class _SignUpState extends State<SignUp> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextFormField(
-                  controller: nameController,
-                  onSaved: (newValue) => nameController,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp("[a-z A-Z]"))
-                  ],
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter name';
-                    }
-                    return null;
-                  },
-                  decoration: const InputDecoration(
-                      icon: Icon(Icons.person),
-                      hintText: 'Name',
-                      hintStyle:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                      fillColor: Colors.grey,
-                      focusColor: Colors.grey),
-                ),
+                widget.shouldEmailAuthentication ?? false
+                    ? TextFormField(
+                        controller: nameController,
+                        onSaved: (newValue) => nameController,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(RegExp("[a-z A-Z]"))
+                        ],
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter name';
+                          }
+                          return null;
+                        },
+                        decoration: const InputDecoration(
+                            icon: Icon(Icons.person),
+                            hintText: 'Name',
+                            hintStyle: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                            fillColor: Colors.grey,
+                            focusColor: Colors.grey),
+                      )
+                    : SizedBox(),
                 SizedBox(height: 10),
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
