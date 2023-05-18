@@ -7,11 +7,13 @@ import 'package:uuid/uuid.dart';
 
 typedef UserModelParamCallback = Function(String? email, String? password,
     String? name, String? userId, String? mobile);
+typedef EmailVerificationCallBack = Function();
 
 class SignUp extends StatefulWidget {
   SignUp({
     Key? key,
     this.onSignUpPressed,
+    this.onVerifyPressed,
     this.signUpButtonText,
     this.additionalWidget,
     this.buttonColor,
@@ -20,6 +22,7 @@ class SignUp extends StatefulWidget {
     required this.shouldEmailAuthentication,
   }) : super(key: key);
   final UserModelParamCallback? onSignUpPressed;
+  final EmailVerificationCallBack? onVerifyPressed;
   bool shouldEmailAuthentication;
   Widget? additionalWidget;
   String? signUpButtonText;
@@ -269,6 +272,9 @@ class _SignUpState extends State<SignUp> {
                         onPressed: () {
                           if (_formkey.currentState != null) {
                             if (_formkey.currentState!.validate()) {
+                              widget.onVerifyPressed != null
+                                  ? widget.onVerifyPressed!()
+                                  : null;
                               onVerify(context);
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(

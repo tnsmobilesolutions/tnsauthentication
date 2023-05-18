@@ -55,6 +55,7 @@ class AuthenticationWidget extends StatelessWidget {
     this.needConfirmPasswordinSignup,
     this.loginButtonTextStyle,
     required this.shouldEmailAuthentication,
+    this.onVerifyPressed,
   }) : super(key: key);
 
   //final VoidCallback? onTap;
@@ -64,6 +65,7 @@ class AuthenticationWidget extends StatelessWidget {
   final DoubleStringParamCallback? onEmailLoginPressed;
   final SingleStringParamCallback? onPhoneLoginPressed;
   final UserModelParamCallback? onSignUpPressed;
+  final EmailVerificationCallBack? onVerifyPressed;
   bool isSignUpVisible = false;
   bool shouldEmailAuthentication = false;
   Widget? additionalWidget;
@@ -392,6 +394,7 @@ class AuthenticationWidget extends StatelessWidget {
                         shouldEmailAuthentication: shouldEmailAuthentication,
                         signUpButtonText: signUpButtonText,
                         additionalWidget: additionalWidget,
+                        onVerifyPressed: onVerifyPressed,
                         onSignUpPressed: onSignUpPressed,
                         buttonColor: buttonColor,
                         signupAppBarText: signupAppBarText,
