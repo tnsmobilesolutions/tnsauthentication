@@ -58,50 +58,21 @@ class _SignUpState extends State<SignUp> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                widget.shouldEmailAuthentication == false
-                    ? TextFormField(
-                        controller: nameController,
-                        onSaved: (newValue) => nameController,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.allow(RegExp("[a-z A-Z]"))
-                        ],
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter name';
-                          }
-                          return null;
-                        },
-                        decoration: const InputDecoration(
-                            icon: Icon(Icons.person),
-                            hintText: 'Name',
-                            hintStyle: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
-                            fillColor: Colors.grey,
-                            focusColor: Colors.grey),
-                      )
-                    : SizedBox(),
-                SizedBox(height: 10),
                 TextFormField(
-                  keyboardType: TextInputType.emailAddress,
-                  controller: emailController,
-                  onSaved: (newValue) => emailController,
+                  controller: nameController,
+                  onSaved: (newValue) => nameController,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp("[a-z A-Z]"))
+                  ],
                   validator: (value) {
-                    // Returns true if email address is in use.
-
                     if (value == null || value.isEmpty) {
-                      return ("Please enter Your Email");
+                      return 'Please enter name';
                     }
-                    // reg expression for email validation
-                    else if (!(RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z]+\.[a-zA-Z]+"))
-                        .hasMatch(value)) {
-                      return ("Please enter a valid email");
-                    }
-                    //else if () {}
                     return null;
                   },
                   decoration: const InputDecoration(
-                      icon: Icon(Icons.email),
-                      hintText: 'Enter Your Email',
+                      icon: Icon(Icons.person),
+                      hintText: 'Name',
                       hintStyle:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       fillColor: Colors.grey,
@@ -110,22 +81,27 @@ class _SignUpState extends State<SignUp> {
                 SizedBox(height: 10),
                 widget.shouldEmailAuthentication == false
                     ? TextFormField(
-                        keyboardType: TextInputType.phone,
-                        controller: mobileController,
-                        onSaved: (newValue) => mobileController,
+                        keyboardType: TextInputType.emailAddress,
+                        controller: emailController,
+                        onSaved: (newValue) => emailController,
                         validator: (value) {
-                          RegExp regex = RegExp(r'^.{10}$');
-                          if (value!.isEmpty) {
-                            return ("Please enter Phone Number");
+                          // Returns true if email address is in use.
+
+                          if (value == null || value.isEmpty) {
+                            return ("Please enter Your Email");
                           }
-                          if (!regex.hasMatch(value) && value.length != 10) {
-                            return ("Enter 10 Digit Mobile Number");
+                          // reg expression for email validation
+                          else if (!(RegExp(
+                                  r"^[a-zA-Z0-9.]+@[a-zA-Z]+\.[a-zA-Z]+"))
+                              .hasMatch(value)) {
+                            return ("Please enter a valid email");
                           }
+                          //else if () {}
                           return null;
                         },
                         decoration: const InputDecoration(
-                            icon: Icon(Icons.phone),
-                            hintText: 'Enter Your Mobile Number',
+                            icon: Icon(Icons.email),
+                            hintText: 'Enter Your Email',
                             hintStyle: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
                             fillColor: Colors.grey,
@@ -134,43 +110,68 @@ class _SignUpState extends State<SignUp> {
                     : SizedBox(),
                 SizedBox(height: 10),
                 TextFormField(
-                  obscureText: ispasswordVisible,
-                  controller: passwordController,
-                  onSaved: (newValue) => passwordController,
+                  keyboardType: TextInputType.phone,
+                  controller: mobileController,
+                  onSaved: (newValue) => mobileController,
                   validator: (value) {
-                    RegExp regex = RegExp(r'^.{6,}$');
-                    if (value == null || value.isEmpty) {
-                      return ("Password length must be atleast 6 characters");
+                    RegExp regex = RegExp(r'^.{10}$');
+                    if (value!.isEmpty) {
+                      return ("Please enter Phone Number");
                     }
-                    if (!regex.hasMatch(value)) {
-                      return ("Enter Valid Password (min 6 character)");
-                    } else if (value.length < 6) {
-                      return 'Password length must be atleast 6 characters';
+                    if (!regex.hasMatch(value) && value.length != 10) {
+                      return ("Enter 10 Digit Mobile Number");
                     }
                     return null;
                   },
-                  decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          // Based on passwordVisible state choose the icon
-                          ispasswordVisible
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                          color: Colors.blue,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            ispasswordVisible = !ispasswordVisible;
-                          });
-                        },
-                      ),
-                      icon: Icon(Icons.password),
-                      hintText: 'Enter Password',
+                  decoration: const InputDecoration(
+                      icon: Icon(Icons.phone),
+                      hintText: 'Enter Your Mobile Number',
                       hintStyle:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       fillColor: Colors.grey,
                       focusColor: Colors.grey),
                 ),
+                SizedBox(height: 10),
+                widget.shouldEmailAuthentication == false
+                    ? TextFormField(
+                        obscureText: ispasswordVisible,
+                        controller: passwordController,
+                        onSaved: (newValue) => passwordController,
+                        validator: (value) {
+                          RegExp regex = RegExp(r'^.{6,}$');
+                          if (value == null || value.isEmpty) {
+                            return ("Password length must be atleast 6 characters");
+                          }
+                          if (!regex.hasMatch(value)) {
+                            return ("Enter Valid Password (min 6 character)");
+                          } else if (value.length < 6) {
+                            return 'Password length must be atleast 6 characters';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                // Based on passwordVisible state choose the icon
+                                ispasswordVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Colors.blue,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  ispasswordVisible = !ispasswordVisible;
+                                });
+                              },
+                            ),
+                            icon: Icon(Icons.password),
+                            hintText: 'Enter Password',
+                            hintStyle: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                            fillColor: Colors.grey,
+                            focusColor: Colors.grey),
+                      )
+                    : SizedBox(),
                 SizedBox(height: 10),
                 if (widget.needConfirmPasswordinSignup == true &&
                     widget.shouldEmailAuthentication == false)
@@ -206,7 +207,7 @@ class _SignUpState extends State<SignUp> {
                         fillColor: Colors.grey,
                         focusColor: Colors.grey),
                   ),
-                widget.additionalWidget ?? const SizedBox(height: 0),
+                widget.additionalWidget ?? const SizedBox(),
                 SizedBox(
                   height: 20,
                 ),
@@ -218,8 +219,12 @@ class _SignUpState extends State<SignUp> {
                         if (_formkey.currentState!.validate()) {
                           widget.onSignUpPressed != null
                               ? widget.onSignUpPressed!(
-                                  emailController.text.trim(),
-                                  passwordController.text.trim(),
+                                  widget.shouldEmailAuthentication == false
+                                      ? emailController.text.trim()
+                                      : null,
+                                  widget.shouldEmailAuthentication == false
+                                      ? passwordController.text.trim()
+                                      : null,
                                   nameController.text.trim(),
                                   const Uuid().v1(),
                                   mobileController.text.trim(),
