@@ -54,7 +54,7 @@ class AuthenticationWidget extends StatelessWidget {
     this.signupAppBarText,
     this.needConfirmPasswordinSignup,
     this.loginButtonTextStyle,
-    required this.shouldEmailAuthentication,
+    //required this.shouldEmailAuthentication,
   }) : super(key: key);
 
   //final VoidCallback? onTap;
@@ -65,7 +65,7 @@ class AuthenticationWidget extends StatelessWidget {
   final SingleStringParamCallback? onPhoneLoginPressed;
   final UserModelParamCallback? onSignUpPressed;
   bool isSignUpVisible = false;
-  bool shouldEmailAuthentication = false;
+  //bool shouldEmailAuthentication = false;
   Widget? additionalWidget;
   Color? cardColor;
   Color? buttonColor;
@@ -389,7 +389,7 @@ class AuthenticationWidget extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => SignUp(
-                        shouldEmailAuthentication: shouldEmailAuthentication,
+                        //shouldEmailAuthentication: shouldEmailAuthentication,
                         signUpButtonText: signUpButtonText,
                         additionalWidget: additionalWidget,
                         onSignUpPressed: onSignUpPressed,
