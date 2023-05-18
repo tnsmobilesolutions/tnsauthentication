@@ -2,6 +2,7 @@
 
 import 'dart:ui';
 
+import 'package:authentication/EmailLogin/email_verification.dart';
 import 'package:authentication/EmailLogin/remeberMe_checkBox.dart';
 import 'package:authentication/EmailLogin/sign_up.dart';
 import 'package:authentication/PhoneLogin/PhoneVerificationScreen.dart';
@@ -387,23 +388,41 @@ class AuthenticationWidget extends StatelessWidget {
             Text('Don\'t have an account?'),
             TextButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SignUp(
-                        shouldEmailAuthentication: shouldEmailAuthentication,
-                        signUpButtonText: signUpButtonText,
-                        additionalWidget: additionalWidget,
-                        onVerifyPressed: onVerifyPressed,
-                        onSignUpPressed: onSignUpPressed,
-                        buttonColor: buttonColor,
-                        signupAppBarText: signupAppBarText,
-                        needConfirmPasswordinSignup:
-                            needConfirmPasswordinSignup,
-                      ),
-                    ));
+                shouldEmailAuthentication == true
+                    ? Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EmailVerification(
+                            shouldEmailAuthentication:
+                                shouldEmailAuthentication,
+                            onVerifyPressed: onVerifyPressed,
+                            signUpButtonText: signUpButtonText,
+                            additionalWidget: additionalWidget,
+                            onSignUpPressed: onSignUpPressed,
+                            buttonColor: buttonColor,
+                            signupAppBarText: signupAppBarText,
+                            needConfirmPasswordinSignup:
+                                needConfirmPasswordinSignup,
+                          ),
+                        ))
+                    : Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignUp(
+                            shouldEmailAuthentication:
+                                shouldEmailAuthentication,
+                            signUpButtonText: signUpButtonText,
+                            additionalWidget: additionalWidget,
+                            onSignUpPressed: onSignUpPressed,
+                            buttonColor: buttonColor,
+                            signupAppBarText: signupAppBarText,
+                            needConfirmPasswordinSignup:
+                                needConfirmPasswordinSignup,
+                          ),
+                        ));
               },
-              child: Text('SignUp',
+              child: Text(
+                  shouldEmailAuthentication == true ? 'Verify' : 'SignUp',
                   style: TextStyle(color: buttonColor ?? Colors.cyanAccent)),
             ),
           ],

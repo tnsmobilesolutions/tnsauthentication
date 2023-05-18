@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:authentication/EmailLogin/email_verification.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,7 +8,6 @@ import 'package:uuid/uuid.dart';
 
 typedef UserModelParamCallback = Function(String? email, String? password,
     String? name, String? userId, String? mobile);
-typedef EmailVerificationCallBack = Function(String? email, String? password);
 
 class SignUp extends StatefulWidget {
   SignUp({
@@ -210,60 +210,34 @@ class _SignUpState extends State<SignUp> {
                 SizedBox(
                   height: 20,
                 ),
-                widget.shouldEmailAuthentication == false
-                    ? CupertinoButton(
-                        color: widget.buttonColor ?? Colors.blueGrey,
-                        child: Text(widget.signUpButtonText ?? 'SignUp'),
-                        onPressed: () {
-                          if (_formkey.currentState != null) {
-                            if (_formkey.currentState!.validate()) {
-                              widget.onSignUpPressed != null
-                                  ? widget.onSignUpPressed!(
-                                      emailController.text.trim(),
-                                      passwordController.text.trim(),
-                                      nameController.text.trim(),
-                                      const Uuid().v1(),
-                                      mobileController.text.trim(),
-                                    )
-                                  : null;
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  elevation: 6,
-                                  backgroundColor:
-                                      Theme.of(context).iconTheme.color,
-                                  behavior: SnackBarBehavior.floating,
-                                  content: const Text('Check Again'),
-                                ),
-                              );
-                            }
-                          }
-                        })
-                    : CupertinoButton(
-                        color: widget.buttonColor ?? Colors.blueGrey,
-                        child: Text(widget.signUpButtonText ?? 'Verify'),
-                        onPressed: () {
-                          if (_formkey.currentState != null) {
-                            if (_formkey.currentState!.validate()) {
-                              widget.onVerifyPressed != null
-                                  ? widget.onVerifyPressed!(
-                                      emailController.text.trim(),
-                                      passwordController.text.trim(),
-                                    )
-                                  : null;
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  elevation: 6,
-                                  backgroundColor:
-                                      Theme.of(context).iconTheme.color,
-                                  behavior: SnackBarBehavior.floating,
-                                  content: const Text('Check Again'),
-                                ),
-                              );
-                            }
-                          }
-                        })
+                CupertinoButton(
+                    color: widget.buttonColor ?? Colors.blueGrey,
+                    child: Text(widget.signUpButtonText ?? 'SignUp'),
+                    onPressed: () {
+                      if (_formkey.currentState != null) {
+                        if (_formkey.currentState!.validate()) {
+                          widget.onSignUpPressed != null
+                              ? widget.onSignUpPressed!(
+                                  emailController.text.trim(),
+                                  passwordController.text.trim(),
+                                  nameController.text.trim(),
+                                  const Uuid().v1(),
+                                  mobileController.text.trim(),
+                                )
+                              : null;
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              elevation: 6,
+                              backgroundColor:
+                                  Theme.of(context).iconTheme.color,
+                              behavior: SnackBarBehavior.floating,
+                              content: const Text('Check Again'),
+                            ),
+                          );
+                        }
+                      }
+                    })
               ],
             ),
           ),
