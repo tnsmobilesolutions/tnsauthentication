@@ -42,7 +42,7 @@ class AuthenticationWidget extends StatelessWidget {
     this.cardHeight,
     this.cardWidth,
     this.isBiometricAvailable,
-    this.rememberMe,
+    //this.rememberMe,
     this.loginButonTextColor,
     this.textFieldBorderColor,
     this.textfieldHintColor,
@@ -93,7 +93,7 @@ class AuthenticationWidget extends StatelessWidget {
   TextStyle? emailHintTextStyle;
   TextStyle? passwordHintTextStyle;
   TextStyle? loginButtonTextStyle;
-  bool? rememberMe;
+  // bool? rememberMe;
   double? cardLeftPadding;
   double? cardRightPadding;
   double? cardElevation;
@@ -287,9 +287,9 @@ class AuthenticationWidget extends StatelessWidget {
                                           ),
                                         ),
                                       ),
-                                      rememberMe!
-                                          ? RememberMeCheckbox()
-                                          : SizedBox()
+                                      // rememberMe!
+                                      //     ? RememberMeCheckbox()
+                                      //     : SizedBox()
                                     ],
                                   ),
                             SizedBox(height: 10),
