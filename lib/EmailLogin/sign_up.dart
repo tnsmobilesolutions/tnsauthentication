@@ -17,10 +17,10 @@ class SignUp extends StatefulWidget {
     this.buttonColor,
     this.needConfirmPasswordinSignup,
     this.signupAppBarText,
-    required this.shouldEmailAuthentication,
+    this.shouldEmailAuthentication,
   }) : super(key: key);
   final UserModelParamCallback? onSignUpPressed;
-  bool shouldEmailAuthentication;
+  bool? shouldEmailAuthentication;
   Widget? additionalWidget;
   String? signUpButtonText;
   Color? buttonColor;
