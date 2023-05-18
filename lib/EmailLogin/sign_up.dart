@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -33,18 +33,26 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   bool ispasswordVisible = false;
-
   final nameController = TextEditingController();
-
   final emailController = TextEditingController();
-
   final mobileController = TextEditingController();
-
   final passwordController = TextEditingController();
-
   final confirmPasswordController = TextEditingController();
-
   final _formkey = GlobalKey<FormState>();
+
+  Future<dynamic> onVerify(BuildContext context) {
+    return showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Center(
+                  child: Text(
+                'Email Verification',
+              )),
+              content: Text('A verification email has been sent to your email'),
+              actions: [],
+            ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -250,6 +258,7 @@ class _SignUpState extends State<SignUp> {
                         onPressed: () {
                           if (_formkey.currentState != null) {
                             if (_formkey.currentState!.validate()) {
+                              onVerify(context);
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
