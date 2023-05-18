@@ -51,14 +51,19 @@ class _SignUpState extends State<SignUp> {
               )),
               content: Text('A verification email has been sent to your email'),
               actions: [
-                ElevatedButton(
-                    onPressed: () {},
-                    child: Row(
-                      children: [
-                        Icon(Icons.mail),
-                        Text('Resend Email'),
-                      ],
-                    ))
+                SizedBox(
+                  width: 100,
+                  child: ElevatedButton(
+                      onPressed: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.mail),
+                          SizedBox(width: 5),
+                          Text('Resend Email'),
+                        ],
+                      )),
+                )
               ],
             ));
   }
