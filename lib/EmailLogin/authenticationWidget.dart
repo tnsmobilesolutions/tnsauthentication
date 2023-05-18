@@ -389,6 +389,7 @@ class AuthenticationWidget extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => SignUp(
+                        shouldEmailAuthentication: shouldEmailAuthentication,
                         signUpButtonText: signUpButtonText,
                         additionalWidget: additionalWidget,
                         onSignUpPressed: onSignUpPressed,
