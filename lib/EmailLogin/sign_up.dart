@@ -7,7 +7,7 @@ import 'package:uuid/uuid.dart';
 
 typedef UserModelParamCallback = Function(String? email, String? password,
     String? name, String? userId, String? mobile);
-typedef EmailVerificationCallBack = Function();
+typedef EmailVerificationCallBack = Function(String? email, String? password);
 
 class SignUp extends StatefulWidget {
   SignUp({
@@ -246,7 +246,10 @@ class _SignUpState extends State<SignUp> {
                           if (_formkey.currentState != null) {
                             if (_formkey.currentState!.validate()) {
                               widget.onVerifyPressed != null
-                                  ? widget.onVerifyPressed!()
+                                  ? widget.onVerifyPressed!(
+                                      emailController.text.trim(),
+                                      passwordController.text.trim(),
+                                    )
                                   : null;
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
