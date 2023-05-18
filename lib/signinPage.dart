@@ -23,6 +23,7 @@ class _SignInPageState extends State<SignInPage> {
           child: Padding(
               padding: const EdgeInsets.all(20),
               child: AuthenticationWidget(
+                shouldEmailAuthentication: true,
                 scaffoldbackGroundColor: Colors.white,
                 onPhoneLoginPressed: (phoneNumber) {
                   log(phoneNumber);
