@@ -43,31 +43,6 @@ class _SignUpState extends State<SignUp> {
   final confirmPasswordController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
 
-  Future<dynamic> onVerify(BuildContext context) {
-    return showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (context) => AlertDialog(
-              title: Center(
-                  child: Text(
-                'Email Verification',
-              )),
-              content: Text('A verification email has been sent to your email'),
-              actions: [
-                ElevatedButton(
-                    onPressed: () {},
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.mail),
-                        SizedBox(width: 5),
-                        Text('Resend Email'),
-                      ],
-                    ))
-              ],
-            ));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -275,7 +250,6 @@ class _SignUpState extends State<SignUp> {
                               widget.onVerifyPressed != null
                                   ? widget.onVerifyPressed!()
                                   : null;
-                              onVerify(context);
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
