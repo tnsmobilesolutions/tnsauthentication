@@ -133,46 +133,44 @@ class _SignUpState extends State<SignUp> {
                       )
                     : SizedBox(),
                 SizedBox(height: 10),
-                widget.shouldEmailAuthentication == false
-                    ? TextFormField(
-                        obscureText: ispasswordVisible,
-                        controller: passwordController,
-                        onSaved: (newValue) => passwordController,
-                        validator: (value) {
-                          RegExp regex = RegExp(r'^.{6,}$');
-                          if (value == null || value.isEmpty) {
-                            return ("Password length must be atleast 6 characters");
-                          }
-                          if (!regex.hasMatch(value)) {
-                            return ("Enter Valid Password (min 6 character)");
-                          } else if (value.length < 6) {
-                            return 'Password length must be atleast 6 characters';
-                          }
-                          return null;
+                TextFormField(
+                  obscureText: ispasswordVisible,
+                  controller: passwordController,
+                  onSaved: (newValue) => passwordController,
+                  validator: (value) {
+                    RegExp regex = RegExp(r'^.{6,}$');
+                    if (value == null || value.isEmpty) {
+                      return ("Password length must be atleast 6 characters");
+                    }
+                    if (!regex.hasMatch(value)) {
+                      return ("Enter Valid Password (min 6 character)");
+                    } else if (value.length < 6) {
+                      return 'Password length must be atleast 6 characters';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          // Based on passwordVisible state choose the icon
+                          ispasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Colors.blue,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            ispasswordVisible = !ispasswordVisible;
+                          });
                         },
-                        decoration: InputDecoration(
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                // Based on passwordVisible state choose the icon
-                                ispasswordVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                                color: Colors.blue,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  ispasswordVisible = !ispasswordVisible;
-                                });
-                              },
-                            ),
-                            icon: Icon(Icons.password),
-                            hintText: 'Enter Password',
-                            hintStyle: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
-                            fillColor: Colors.grey,
-                            focusColor: Colors.grey),
-                      )
-                    : SizedBox(),
+                      ),
+                      icon: Icon(Icons.password),
+                      hintText: 'Enter Password',
+                      hintStyle:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      fillColor: Colors.grey,
+                      focusColor: Colors.grey),
+                ),
                 SizedBox(height: 10),
                 if (widget.needConfirmPasswordinSignup == true &&
                     widget.shouldEmailAuthentication == false)
