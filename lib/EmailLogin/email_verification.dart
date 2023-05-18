@@ -130,21 +130,21 @@ class _EmailVerificationState extends State<EmailVerification> {
                                 )
                               : null;
 
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SignUp(
-                                  shouldEmailAuthentication:
-                                      widget.shouldEmailAuthentication,
-                                  signUpButtonText: widget.signUpButtonText,
-                                  additionalWidget: widget.additionalWidget,
-                                  onSignUpPressed: widget.onSignUpPressed,
-                                  buttonColor: widget.buttonColor,
-                                  signupAppBarText: widget.signupAppBarText,
-                                  needConfirmPasswordinSignup:
-                                      widget.needConfirmPasswordinSignup,
-                                ),
-                              ));
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //       builder: (context) => SignUp(
+                          //         shouldEmailAuthentication:
+                          //             widget.shouldEmailAuthentication,
+                          //         signUpButtonText: widget.signUpButtonText,
+                          //         additionalWidget: widget.additionalWidget,
+                          //         onSignUpPressed: widget.onSignUpPressed,
+                          //         buttonColor: widget.buttonColor,
+                          //         signupAppBarText: widget.signupAppBarText,
+                          //         needConfirmPasswordinSignup:
+                          //             widget.needConfirmPasswordinSignup,
+                          //       ),
+                          //     ));
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
