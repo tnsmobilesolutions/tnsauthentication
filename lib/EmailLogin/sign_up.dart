@@ -61,7 +61,7 @@ class _SignUpState extends State<SignUp> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                widget.shouldEmailAuthentication ?? false
+                widget.shouldEmailAuthentication == true
                     ? TextFormField(
                         controller: nameController,
                         onSaved: (newValue) => nameController,
