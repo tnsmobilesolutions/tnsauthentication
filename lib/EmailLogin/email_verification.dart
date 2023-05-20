@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 // typedef UserModelParamCallback = Function(String? email, String? password,
 //     String? name, String? userId, String? mobile);
 typedef EmailVerificationCallBack = Function(String? email, String? password);
+typedef EmailBackButtonCallBack = Function();
 
 class EmailVerification extends StatefulWidget {
   EmailVerification({
@@ -19,9 +20,10 @@ class EmailVerification extends StatefulWidget {
     this.needConfirmPasswordinSignup,
     this.signUpButtonText,
     this.signupAppBarText,
+    this.onBackPressed,
   }) : super(key: key);
   final UserModelParamCallback? onSignUpPressed;
-
+  final EmailBackButtonCallBack? onBackPressed;
   final EmailVerificationCallBack? onVerifyPressed;
   bool shouldEmailAuthentication;
   Widget? additionalWidget;
@@ -44,6 +46,14 @@ class _EmailVerificationState extends State<EmailVerification> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Verification'),
+          leading: IconButton(
+            onPressed: () {
+              widget.onBackPressed != null ? widget.onBackPressed!() : null;
+            },
+            icon: Icon(
+              Icons.arrow_back_rounded,
+            ),
+          ),
         ),
         body: SafeArea(
           child: Padding(
