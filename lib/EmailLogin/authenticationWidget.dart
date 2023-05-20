@@ -15,7 +15,7 @@ typedef SingleStringParamCallback = Function(String phoneNumber);
 typedef ModelParamCallback = Function(String? email, String? password,
     String? name, String? userId, String? mobile);
 
-class AuthenticationWidget extends StatelessWidget {
+class AuthenticationWidget extends StatefulWidget {
   AuthenticationWidget({
     Key? key,
     this.buttonColor,
@@ -103,15 +103,48 @@ class AuthenticationWidget extends StatelessWidget {
   double? cardLeftPadding;
   double? cardRightPadding;
   double? cardElevation;
-  final emailcontroller = TextEditingController();
-  final passwordcontroller = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final _formkey = GlobalKey<FormState>();
 
+  @override
+  State<AuthenticationWidget> createState() => _AuthenticationWidgetState();
+}
+
+class _AuthenticationWidgetState extends State<AuthenticationWidget> {
+  final emailcontroller = TextEditingController();
+
+  final passwordcontroller = TextEditingController();
+
+  final TextEditingController phoneController = TextEditingController();
+
+  final _formkey = GlobalKey<FormState>();
+  bool _isPasswordVisible = false;
+
+  bool _autoValidateEmail = false;
+
+  bool _autoValidatePassword = false;
+
+  // bool _containsAtleast8Characters(String? password) {
+  //   return password!.length >= 8;
+  // }
+
+  // bool _containsUppercaseLetter(String? password) {
+  //   return password!.contains(RegExp(r'[A-Z]'));
+  // }
+
+  // bool _containsLowercaseLetter(String? password) {
+  //   return password!.contains(RegExp(r'[a-z]'));
+  // }
+
+  // bool _containsNumericValue(String? password) {
+  //   return password!.contains(RegExp(r'[0-9]'));
+  // }
+
+  // bool _containsSymbol(String? password) {
+  //   return password!.contains(RegExp(r'[!@#$%^&*~]'));
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: scaffoldbackGroundColor ?? Colors.white,
+      backgroundColor: widget.scaffoldbackGroundColor ?? Colors.white,
       body: SingleChildScrollView(
         child: Center(
           child: Container(
@@ -124,47 +157,47 @@ class AuthenticationWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  isImageVisible == true
+                  widget.isImageVisible == true
                       ? SizedBox(
-                          height: imageHeight ?? 250,
-                          width: imageWidth ?? 600,
+                          height: widget.imageHeight ?? 250,
+                          width: widget.imageWidth ?? 600,
                           child: Image(
                             // height: imageHeight ?? 150,
                             // width: imageWidth ?? 600,
-                            image:
-                                image ?? AssetImage('assets/images/login.png'),
+                            image: widget.image ??
+                                AssetImage('assets/images/login.png'),
                           ),
                         )
                       : SizedBox(
-                          height: imageHeight ?? 200,
-                          width: imageWidth ?? 0,
+                          height: widget.imageHeight ?? 200,
+                          width: widget.imageWidth ?? 0,
                         ),
                   Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0),
                     ),
-                    shadowColor: buttonColor ?? cardColor,
-                    elevation: cardElevation ?? 10,
-                    color: cardColor ?? Colors.amberAccent,
+                    shadowColor: widget.buttonColor ?? widget.cardColor,
+                    elevation: widget.cardElevation ?? 10,
+                    color: widget.cardColor ?? Colors.amberAccent,
                     child: Padding(
                       padding: const EdgeInsets.all(30.0),
                       child: SizedBox(
-                        height: cardHeight ?? 300,
-                        width: cardWidth ?? 300,
+                        height: widget.cardHeight ?? 300,
+                        width: widget.cardWidth ?? 300,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              title ?? 'Login',
-                              style: loginPageTextStyle,
+                              widget.title ?? 'Login',
+                              style: widget.loginPageTextStyle,
                               // TextStyle(
                               //     fontSize: 40,
                               //     fontWeight: FontWeight.bold,
                               //     color: titleTextColor ?? Colors.black),
                             ),
                             SizedBox(height: 20),
-                            phoneAuthentication == true
+                            widget.phoneAuthentication == true
                                 ? TextFormField(
                                     autofocus: false,
                                     controller: phoneController,
@@ -176,23 +209,27 @@ class AuthenticationWidget extends StatelessWidget {
                                     decoration: InputDecoration(
                                       prefixIcon: Icon(Icons.phone),
                                       contentPadding: EdgeInsets.all(15),
-                                      hintText: phoneHinttext ?? 'Phone Number',
-                                      hintStyle: phoneHintTextStyle ??
+                                      hintText: widget.phoneHinttext ??
+                                          'Phone Number',
+                                      hintStyle: widget.phoneHintTextStyle ??
                                           TextStyle(
-                                              color: textfieldHintColor ??
-                                                  Colors.black),
+                                              color:
+                                                  widget.textfieldHintColor ??
+                                                      Colors.black),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: textFieldBorderColor ??
-                                                Colors.white,
+                                            color:
+                                                widget.textFieldBorderColor ??
+                                                    Colors.white,
                                             width: 2.0),
                                         borderRadius:
                                             BorderRadius.circular(25.0),
                                       ),
                                       border: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: textFieldBorderColor ??
-                                                Colors.white),
+                                            color:
+                                                widget.textFieldBorderColor ??
+                                                    Colors.white),
                                         borderRadius: BorderRadius.circular(15),
                                       ),
                                     ),
@@ -200,97 +237,136 @@ class AuthenticationWidget extends StatelessWidget {
                                 : Column(
                                     children: [
                                       TextFormField(
-                                        style: emailHintTextStyle ??
+                                        autovalidateMode: _autoValidateEmail
+                                            ? AutovalidateMode.always
+                                            : AutovalidateMode.disabled,
+                                        style: widget.emailHintTextStyle ??
                                             TextStyle(color: Colors.black),
                                         textInputAction: TextInputAction.next,
                                         validator: (value) {
-                                          if (value == null || value.isEmpty) {
+                                          if (!_autoValidateEmail &&
+                                              (value == null ||
+                                                  value.isEmpty)) {
                                             return ("Please Enter Your Email");
                                           }
 
                                           if (!RegExp(
-                                                  "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
-                                              .hasMatch(value)) {
+                                                  r'^[\w-.]+(\.[\w-.]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$')
+                                              .hasMatch(value.toString())) {
                                             return ("Please Enter a valid email");
                                           }
                                           return null;
+                                        },
+                                        onChanged: (_) {
+                                          setState(() {
+                                            _autoValidateEmail = true;
+                                          });
                                         },
                                         onSaved: (value) {
                                           emailcontroller.text = value!;
                                         },
                                         controller: emailcontroller,
                                         decoration: InputDecoration(
+                                          labelText: 'Email',
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: Colors.grey)),
                                           focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: textFieldBorderColor ??
-                                                    Colors.white,
-                                                width: 2.0),
-                                            borderRadius:
-                                                BorderRadius.circular(25.0),
-                                          ),
-                                          contentPadding:
-                                              const EdgeInsets.all(15),
-                                          hintText:
-                                              emailFieldhintText ?? 'Email',
-                                          hintStyle: emailHintTextStyle,
-                                          border: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: textFieldBorderColor ??
-                                                    Colors.white),
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                          ),
+                                              borderSide: BorderSide(
+                                                  color: Colors.blue)),
+                                          errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey)),
+                                          enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey)),
                                         ),
                                       ),
                                       SizedBox(height: 10),
                                       TextFormField(
-                                        style: passwordHintTextStyle ??
+                                        autovalidateMode: _autoValidatePassword
+                                            ? AutovalidateMode.always
+                                            : AutovalidateMode.disabled,
+                                        style: widget.passwordHintTextStyle ??
                                             TextStyle(color: Colors.black),
                                         autofocus: false,
                                         controller: passwordcontroller,
-                                        obscureText: true,
+                                        obscureText: !_isPasswordVisible,
                                         validator: (value) {
                                           RegExp regex = RegExp(r'^.{6,}$');
-                                          if (value!.isEmpty) {
+                                          if (!_autoValidatePassword &&
+                                              (value == null ||
+                                                  value.isEmpty)) {
                                             return ("Password is required for login");
                                           }
-                                          if (!regex.hasMatch(value)) {
+                                          if (value!.length < 6) {
                                             return ("Enter Valid Password(Min. 6 Character)");
                                           }
+                                          // if (_password != null &&
+                                          //     _password!.isNotEmpty) {
+                                          //   if (!_containsUppercaseLetter(
+                                          //       _password)) {
+                                          //     return 'At least one uppercase letter';
+                                          //   }
+                                          //   if (!_containsLowercaseLetter(
+                                          //       _password)) {
+                                          //     return 'At least one lowercase letter';
+                                          //   }
+                                          //   if (!_containsNumericValue(
+                                          //       _password)) {
+                                          //     return 'At least one numeric value';
+                                          //   }
+                                          //   if (!_containsSymbol(_password)) {
+                                          //     return 'At least one symbol';
+                                          //   }
+                                          //   if (!_containsAtleast8Characters(
+                                          //       _password)) {
+                                          //     return 'At least 8 characters';
+                                          //   }
+                                          // }
                                           return null;
+                                        },
+                                        onChanged: (_) {
+                                          setState(() {
+                                            _autoValidatePassword = true;
+                                          });
                                         },
                                         onSaved: (value) {
                                           passwordcontroller.text = value!;
                                         },
                                         onFieldSubmitted: (value) {
-                                          onEmailLoginPressed!(
+                                          widget.onEmailLoginPressed!(
                                               emailcontroller.text,
                                               passwordcontroller.text);
                                         },
                                         textInputAction: TextInputAction.done,
                                         decoration: InputDecoration(
+                                          suffixIcon: IconButton(
+                                            icon: _isPasswordVisible
+                                                ? Icon(Icons.visibility)
+                                                : Icon(Icons.visibility_off),
+                                            onPressed: () {
+                                              setState(() {
+                                                _isPasswordVisible =
+                                                    !_isPasswordVisible;
+                                              });
+                                            },
+                                          ),
+                                          labelText: 'Password',
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: Colors.grey)),
                                           focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: textFieldBorderColor ??
-                                                    Colors.white,
-                                                width: 2.0),
-                                            borderRadius:
-                                                BorderRadius.circular(25.0),
-                                          ),
-                                          contentPadding:
-                                              const EdgeInsets.all(15),
-                                          hintText:
-                                              passwordFieldFieldhintText ??
-                                                  'Password',
-                                          hintStyle: passwordHintTextStyle,
-                                          border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                            borderSide: BorderSide(
-                                                width: 3,
-                                                color: textFieldBorderColor ??
-                                                    Colors.greenAccent),
-                                          ),
+                                              borderSide: BorderSide(
+                                                  color: Colors.blue)),
+                                          errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey)),
+                                          enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey)),
                                         ),
                                       ),
                                       // rememberMe!
@@ -300,12 +376,12 @@ class AuthenticationWidget extends StatelessWidget {
                                   ),
                             SizedBox(height: 10),
                             CupertinoButton(
-                              color: buttonColor ?? Colors.cyanAccent,
+                              color: widget.buttonColor ?? Colors.cyanAccent,
                               onPressed: () {
                                 if (_formkey.currentState!.validate()) {
-                                  if (phoneAuthentication == true) {
-                                    onPhoneLoginPressed != null
-                                        ? onPhoneLoginPressed!(
+                                  if (widget.phoneAuthentication == true) {
+                                    widget.onPhoneLoginPressed != null
+                                        ? widget.onPhoneLoginPressed!(
                                             phoneController.text.trim())
                                         : null;
                                     Navigator.push(
@@ -318,8 +394,8 @@ class AuthenticationWidget extends StatelessWidget {
                                                       .trim()),
                                         ));
                                   } else {
-                                    onEmailLoginPressed != null
-                                        ? onEmailLoginPressed!(
+                                    widget.onEmailLoginPressed != null
+                                        ? widget.onEmailLoginPressed!(
                                             emailcontroller.text,
                                             passwordcontroller.text)
                                         : null;
@@ -338,14 +414,14 @@ class AuthenticationWidget extends StatelessWidget {
                                 }
                               },
                               child: Text(
-                                loginButtonText ?? 'Login',
-                                style: loginButtonTextStyle ??
+                                widget.loginButtonText ?? 'Login',
+                                style: widget.loginButtonTextStyle ??
                                     TextStyle(
-                                        color: loginButonTextColor ??
+                                        color: widget.loginButonTextColor ??
                                             Colors.black),
                               ),
                             ),
-                            isBiometricAvailable == true
+                            widget.isBiometricAvailable == true
                                 ? CupertinoButton(
                                     child:
                                         const Icon(Icons.fingerprint, size: 50),
@@ -383,7 +459,7 @@ class AuthenticationWidget extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Visibility(
-        visible: isSignUpVisible,
+        visible: widget.isSignUpVisible,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -391,22 +467,22 @@ class AuthenticationWidget extends StatelessWidget {
             Text('Don\'t have an account?'),
             TextButton(
               onPressed: () {
-                shouldEmailAuthentication == true
+                widget.shouldEmailAuthentication == true
                     ? Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => EmailVerification(
                             shouldEmailAuthentication:
-                                shouldEmailAuthentication,
-                            onVerifyPressed: onVerifyPressed,
-                            onBackPressed: onBackPressed,
-                            signUpButtonText: signUpButtonText,
-                            additionalWidget: additionalWidget,
-                            onSignUpPressed: onSignUpPressed,
-                            buttonColor: buttonColor,
-                            signupAppBarText: signupAppBarText,
+                                widget.shouldEmailAuthentication,
+                            onVerifyPressed: widget.onVerifyPressed,
+                            onBackPressed: widget.onBackPressed,
+                            signUpButtonText: widget.signUpButtonText,
+                            additionalWidget: widget.additionalWidget,
+                            onSignUpPressed: widget.onSignUpPressed,
+                            buttonColor: widget.buttonColor,
+                            signupAppBarText: widget.signupAppBarText,
                             needConfirmPasswordinSignup:
-                                needConfirmPasswordinSignup,
+                                widget.needConfirmPasswordinSignup,
                           ),
                         ))
                     : Navigator.push(
@@ -414,20 +490,23 @@ class AuthenticationWidget extends StatelessWidget {
                         MaterialPageRoute(
                           builder: (context) => SignUp(
                             shouldEmailAuthentication:
-                                shouldEmailAuthentication,
-                            signUpButtonText: signUpButtonText,
-                            additionalWidget: additionalWidget,
-                            onSignUpPressed: onSignUpPressed,
-                            buttonColor: buttonColor,
-                            signupAppBarText: signupAppBarText,
+                                widget.shouldEmailAuthentication,
+                            signUpButtonText: widget.signUpButtonText,
+                            additionalWidget: widget.additionalWidget,
+                            onSignUpPressed: widget.onSignUpPressed,
+                            buttonColor: widget.buttonColor,
+                            signupAppBarText: widget.signupAppBarText,
                             needConfirmPasswordinSignup:
-                                needConfirmPasswordinSignup,
+                                widget.needConfirmPasswordinSignup,
                           ),
                         ));
               },
               child: Text(
-                  shouldEmailAuthentication == true ? 'Verify' : 'SignUp',
-                  style: TextStyle(color: buttonColor ?? Colors.cyanAccent)),
+                  widget.shouldEmailAuthentication == true
+                      ? 'Verify'
+                      : 'SignUp',
+                  style: TextStyle(
+                      color: widget.buttonColor ?? Colors.cyanAccent)),
             ),
           ],
         ),
