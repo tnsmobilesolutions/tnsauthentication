@@ -58,6 +58,8 @@ class AuthenticationWidget extends StatefulWidget {
     required this.shouldEmailAuthentication,
     this.onBackPressed,
     this.onVerifyPressed,
+    this.emailFieldDecoration,
+    this.passwordFieldDecoration,
   }) : super(key: key);
 
   //final VoidCallback? onTap;
@@ -103,7 +105,7 @@ class AuthenticationWidget extends StatefulWidget {
   double? cardLeftPadding;
   double? cardRightPadding;
   double? cardElevation;
-
+  InputDecoration? emailFieldDecoration, passwordFieldDecoration;
   @override
   State<AuthenticationWidget> createState() => _AuthenticationWidgetState();
 }
@@ -266,22 +268,24 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                           emailcontroller.text = value!;
                                         },
                                         controller: emailcontroller,
-                                        decoration: InputDecoration(
-                                          labelText: 'Email',
-                                          focusedErrorBorder:
-                                              OutlineInputBorder(
+                                        decoration: widget
+                                                .emailFieldDecoration ??
+                                            InputDecoration(
+                                              labelText: 'Email',
+                                              focusedErrorBorder:
+                                                  OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.grey)),
+                                              focusedBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: Colors.blue)),
+                                              errorBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                       color: Colors.grey)),
-                                          focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.blue)),
-                                          errorBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey)),
-                                          enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey)),
-                                        ),
+                                              enabledBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: Colors.grey)),
+                                            ),
                                       ),
                                       SizedBox(height: 10),
                                       TextFormField(
@@ -341,33 +345,35 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                               passwordcontroller.text);
                                         },
                                         textInputAction: TextInputAction.done,
-                                        decoration: InputDecoration(
-                                          suffixIcon: IconButton(
-                                            icon: _isPasswordVisible
-                                                ? Icon(Icons.visibility)
-                                                : Icon(Icons.visibility_off),
-                                            onPressed: () {
-                                              setState(() {
-                                                _isPasswordVisible =
-                                                    !_isPasswordVisible;
-                                              });
-                                            },
-                                          ),
-                                          labelText: 'Password',
-                                          focusedErrorBorder:
-                                              OutlineInputBorder(
+                                        decoration: widget
+                                                .passwordFieldDecoration ??
+                                            InputDecoration(
+                                              suffixIcon: IconButton(
+                                                icon: _isPasswordVisible
+                                                    ? Icon(Icons.visibility_off)
+                                                    : Icon(Icons.visibility),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    _isPasswordVisible =
+                                                        !_isPasswordVisible;
+                                                  });
+                                                },
+                                              ),
+                                              labelText: 'Password',
+                                              focusedErrorBorder:
+                                                  OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.grey)),
+                                              focusedBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: Colors.blue)),
+                                              errorBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                       color: Colors.grey)),
-                                          focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.blue)),
-                                          errorBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey)),
-                                          enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey)),
-                                        ),
+                                              enabledBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: Colors.grey)),
+                                            ),
                                       ),
                                       // rememberMe!
                                       //     ? RememberMeCheckbox()
