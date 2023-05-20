@@ -61,6 +61,7 @@ class AuthenticationWidget extends StatefulWidget {
     this.emailFieldDecoration,
     this.passwordFieldDecoration,
     this.passwordSuffixIcon,
+    this.obscureText,
   }) : super(key: key);
 
   //final VoidCallback? onTap;
@@ -108,6 +109,7 @@ class AuthenticationWidget extends StatefulWidget {
   double? cardElevation;
   InputDecoration? emailFieldDecoration, passwordFieldDecoration;
   IconButton? passwordSuffixIcon;
+  bool? obscureText;
   @override
   State<AuthenticationWidget> createState() => _AuthenticationWidgetState();
 }
@@ -298,7 +300,8 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                             TextStyle(color: Colors.black),
                                         autofocus: false,
                                         controller: passwordcontroller,
-                                        obscureText: !_isPasswordVisible,
+                                        obscureText: widget.obscureText ??
+                                            !_isPasswordVisible,
                                         validator: (value) {
                                           RegExp regex = RegExp(r'^.{6,}$');
                                           if (!_autoValidatePassword &&
