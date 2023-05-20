@@ -60,6 +60,7 @@ class AuthenticationWidget extends StatefulWidget {
     this.onVerifyPressed,
     this.emailFieldDecoration,
     this.passwordFieldDecoration,
+    this.passwordSuffixIcon,
   }) : super(key: key);
 
   //final VoidCallback? onTap;
@@ -106,6 +107,7 @@ class AuthenticationWidget extends StatefulWidget {
   double? cardRightPadding;
   double? cardElevation;
   InputDecoration? emailFieldDecoration, passwordFieldDecoration;
+  IconButton? passwordSuffixIcon;
   @override
   State<AuthenticationWidget> createState() => _AuthenticationWidgetState();
 }
@@ -348,17 +350,21 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                         decoration: widget
                                                 .passwordFieldDecoration ??
                                             InputDecoration(
-                                              suffixIcon: IconButton(
-                                                icon: _isPasswordVisible
-                                                    ? Icon(Icons.visibility_off)
-                                                    : Icon(Icons.visibility),
-                                                onPressed: () {
-                                                  setState(() {
-                                                    _isPasswordVisible =
-                                                        !_isPasswordVisible;
-                                                  });
-                                                },
-                                              ),
+                                              suffixIcon: widget
+                                                      .passwordSuffixIcon ??
+                                                  IconButton(
+                                                    icon: _isPasswordVisible
+                                                        ? Icon(Icons
+                                                            .visibility_off)
+                                                        : Icon(
+                                                            Icons.visibility),
+                                                    onPressed: () {
+                                                      setState(() {
+                                                        _isPasswordVisible =
+                                                            !_isPasswordVisible;
+                                                      });
+                                                    },
+                                                  ),
                                               labelText: 'Password',
                                               focusedErrorBorder:
                                                   OutlineInputBorder(
