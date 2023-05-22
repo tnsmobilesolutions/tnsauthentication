@@ -117,9 +117,9 @@ class _EmailVerificationState extends State<EmailVerification> {
                             suffixIcon: IconButton(
                               icon: Icon(
                                 // Based on passwordVisible state choose the icon
-                                ispasswordVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
+                                !ispasswordVisible
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
                                 color: Colors.blue,
                               ),
                               onPressed: () {
