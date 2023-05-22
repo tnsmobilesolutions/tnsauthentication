@@ -39,7 +39,7 @@ class _EmailVerificationState extends State<EmailVerification> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
-  bool isPasswordVisible = false;
+  bool isPasswordVisible = true;
 
   @override
   Widget build(BuildContext context) {

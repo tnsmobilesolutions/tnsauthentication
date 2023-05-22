@@ -516,10 +516,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                           ),
                         ));
               },
-              child: Text(
-                  widget.shouldEmailAuthentication == true
-                      ? 'Verify'
-                      : 'SignUp',
+              child: Text('SignUp',
                   style: TextStyle(
                       color: widget.buttonColor ?? Colors.cyanAccent)),
             ),
