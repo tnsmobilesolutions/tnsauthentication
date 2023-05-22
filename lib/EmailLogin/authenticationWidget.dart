@@ -122,7 +122,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
   final TextEditingController phoneController = TextEditingController();
 
   final _formkey = GlobalKey<FormState>();
-  bool _isPasswordVisible = false;
+  bool _isPasswordVisible = true;
 
   bool _autoValidateEmail = false;
 
