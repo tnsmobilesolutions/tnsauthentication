@@ -39,7 +39,7 @@ class _EmailVerificationState extends State<EmailVerification> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
-  bool ispasswordVisible = false;
+  bool isPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +98,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                     SizedBox(
                       width: totalWidth / 2.5,
                       child: TextFormField(
-                        obscureText: ispasswordVisible,
+                        obscureText: isPasswordVisible,
                         controller: passwordController,
                         onSaved: (newValue) => passwordController,
                         validator: (value) {
@@ -117,14 +117,14 @@ class _EmailVerificationState extends State<EmailVerification> {
                             suffixIcon: IconButton(
                               icon: Icon(
                                 // Based on passwordVisible state choose the icon
-                                !ispasswordVisible
+                                isPasswordVisible
                                     ? Icons.visibility_off
                                     : Icons.visibility,
                                 color: Colors.blue,
                               ),
                               onPressed: () {
                                 setState(() {
-                                  ispasswordVisible = !ispasswordVisible;
+                                  isPasswordVisible = !isPasswordVisible;
                                 });
                               },
                             ),
