@@ -64,8 +64,8 @@ class _EmailVerificationState extends State<EmailVerification> {
             child: Form(
               key: _formkey,
               child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  //mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     SizedBox(
                       width: totalWidth / 3,
