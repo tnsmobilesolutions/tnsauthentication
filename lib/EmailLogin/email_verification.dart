@@ -94,12 +94,21 @@ class _EmailVerificationState extends State<EmailVerification> {
                           });
                         },
                         decoration: const InputDecoration(
-                            icon: Icon(Icons.email),
-                            hintText: 'Enter Your Email',
-                            hintStyle: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
-                            fillColor: Colors.grey,
-                            focusColor: Colors.grey),
+                          icon: Icon(Icons.email),
+                          hintText: 'Enter Your Email',
+                          hintStyle: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                          fillColor: Colors.grey,
+                          focusColor: Colors.grey,
+                          focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey)),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blue)),
+                          errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey)),
+                        ),
                       ),
                       SizedBox(height: 10),
                       TextFormField(
@@ -126,28 +135,37 @@ class _EmailVerificationState extends State<EmailVerification> {
                           });
                         },
                         decoration: InputDecoration(
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                // Based on passwordVisible state choose the icon
-                                isPasswordVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                                color: Colors.blue,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  isPasswordVisible = !isPasswordVisible;
-                                });
-                              },
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              // Based on passwordVisible state choose the icon
+                              isPasswordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Colors.blue,
                             ),
-                            icon: Icon(Icons.password),
-                            hintText: 'Enter Password',
-                            hintStyle: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
-                            fillColor: Colors.grey,
-                            focusColor: Colors.grey),
+                            onPressed: () {
+                              setState(() {
+                                isPasswordVisible = !isPasswordVisible;
+                              });
+                            },
+                          ),
+                          icon: Icon(Icons.password),
+                          hintText: 'Enter Password',
+                          hintStyle: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                          fillColor: Colors.grey,
+                          focusColor: Colors.grey,
+                          focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey)),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blue)),
+                          errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey)),
+                        ),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 30),
                       CupertinoButton(
                           color: Colors.blueGrey,
                           child: Text('Verify'),
