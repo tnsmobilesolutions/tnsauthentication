@@ -101,11 +101,11 @@ class _EmailVerificationState extends State<EmailVerification> {
                           fillColor: Colors.grey,
                           focusColor: Colors.grey,
                           focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey)),
+                              borderSide: BorderSide(color: Colors.red)),
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blue)),
                           errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey)),
+                              borderSide: BorderSide(color: Colors.red)),
                           enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.grey)),
                         ),
@@ -162,7 +162,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                           errorBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.red)),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.blue)),
+                              borderSide: BorderSide(color: Colors.grey)),
                         ),
                       ),
                       SizedBox(height: 30),
