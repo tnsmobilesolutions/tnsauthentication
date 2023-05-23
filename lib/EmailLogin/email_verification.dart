@@ -40,6 +40,8 @@ class _EmailVerificationState extends State<EmailVerification> {
   final passwordController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
   bool isPasswordVisible = true;
+  bool _autoValidateEmail = false;
+  bool _autoValidatePassword = false;
 
   @override
   Widget build(BuildContext context) {
@@ -62,28 +64,35 @@ class _EmailVerificationState extends State<EmailVerification> {
             child: Form(
               key: _formkey,
               child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
-                      width: totalWidth / 2.5,
+                      width: totalWidth / 3,
                       child: TextFormField(
+                        autovalidateMode: _autoValidateEmail
+                            ? AutovalidateMode.always
+                            : AutovalidateMode.disabled,
                         keyboardType: TextInputType.emailAddress,
                         controller: emailController,
                         onSaved: (newValue) => emailController,
                         validator: (value) {
-                          // Returns true if email address is in use.
+                          if (!_autoValidateEmail &&
+                              (value == null || value.isEmpty)) {
+                            return ("Please Enter Your Email");
+                          }
 
-                          if (value == null || value.isEmpty) {
-                            return ("Please enter Your Email");
+                          if (!RegExp(
+                                  r'^[\w-.]+(\.[\w-.]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$')
+                              .hasMatch(value.toString())) {
+                            return ("Please Enter a valid email");
                           }
-                          // reg expression for email validation
-                          else if (!(RegExp(
-                                  r"^[a-zA-Z0-9.]+@[a-zA-Z]+\.[a-zA-Z]+"))
-                              .hasMatch(value)) {
-                            return ("Please enter a valid email");
-                          }
-                          //else if () {}
                           return null;
+                        },
+                        onChanged: (_) {
+                          setState(() {
+                            _autoValidateEmail = true;
+                          });
                         },
                         decoration: const InputDecoration(
                             icon: Icon(Icons.email),
@@ -96,30 +105,37 @@ class _EmailVerificationState extends State<EmailVerification> {
                     ),
                     SizedBox(height: 10),
                     SizedBox(
-                      width: totalWidth / 2.5,
+                      width: totalWidth / 3,
                       child: TextFormField(
+                        autovalidateMode: _autoValidatePassword
+                            ? AutovalidateMode.always
+                            : AutovalidateMode.disabled,
                         obscureText: isPasswordVisible,
                         controller: passwordController,
                         onSaved: (newValue) => passwordController,
                         validator: (value) {
                           RegExp regex = RegExp(r'^.{6,}$');
-                          if (value == null || value.isEmpty) {
-                            return ("Password length must be atleast 6 characters");
+                          if (!_autoValidatePassword &&
+                              (value == null || value.isEmpty)) {
+                            return ("Password is required for login");
                           }
-                          if (!regex.hasMatch(value)) {
-                            return ("Enter Valid Password (min 6 character)");
-                          } else if (value.length < 6) {
-                            return 'Password length must be atleast 6 characters';
+                          if (value!.length < 6) {
+                            return ("Enter Valid Password (min. 6 Characters)");
                           }
                           return null;
+                        },
+                        onChanged: (_) {
+                          setState(() {
+                            _autoValidatePassword = true;
+                          });
                         },
                         decoration: InputDecoration(
                             suffixIcon: IconButton(
                               icon: Icon(
                                 // Based on passwordVisible state choose the icon
                                 isPasswordVisible
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
                                 color: Colors.blue,
                               ),
                               onPressed: () {
