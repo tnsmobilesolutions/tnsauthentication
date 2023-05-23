@@ -63,13 +63,12 @@ class _EmailVerificationState extends State<EmailVerification> {
             padding: EdgeInsets.all(15),
             child: Form(
               key: _formkey,
-              child: Column(
-                  //mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Container(
-                      width: totalWidth / 3,
-                      child: TextFormField(
+              child: Center(
+                child: SizedBox(
+                  width: totalWidth / 3,
+                  child: Column(
+                    children: [
+                      TextFormField(
                         autovalidateMode: _autoValidateEmail
                             ? AutovalidateMode.always
                             : AutovalidateMode.disabled,
@@ -102,11 +101,8 @@ class _EmailVerificationState extends State<EmailVerification> {
                             fillColor: Colors.grey,
                             focusColor: Colors.grey),
                       ),
-                    ),
-                    SizedBox(height: 10),
-                    Container(
-                      width: totalWidth / 3,
-                      child: TextFormField(
+                      SizedBox(height: 10),
+                      TextFormField(
                         autovalidateMode: _autoValidatePassword
                             ? AutovalidateMode.always
                             : AutovalidateMode.disabled,
@@ -151,50 +147,52 @@ class _EmailVerificationState extends State<EmailVerification> {
                             fillColor: Colors.grey,
                             focusColor: Colors.grey),
                       ),
-                    ),
-                    SizedBox(height: 10),
-                    CupertinoButton(
-                        color: Colors.blueGrey,
-                        child: Text('Verify'),
-                        onPressed: () {
-                          if (_formkey.currentState != null) {
-                            if (_formkey.currentState!.validate()) {
-                              widget.onVerifyPressed != null
-                                  ? widget.onVerifyPressed!(
-                                      emailController.text.trim(),
-                                      passwordController.text.trim(),
-                                    )
-                                  : null;
+                      SizedBox(height: 10),
+                      CupertinoButton(
+                          color: Colors.blueGrey,
+                          child: Text('Verify'),
+                          onPressed: () {
+                            if (_formkey.currentState != null) {
+                              if (_formkey.currentState!.validate()) {
+                                widget.onVerifyPressed != null
+                                    ? widget.onVerifyPressed!(
+                                        emailController.text.trim(),
+                                        passwordController.text.trim(),
+                                      )
+                                    : null;
 
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //       builder: (context) => SignUp(
-                              //         shouldEmailAuthentication:
-                              //             widget.shouldEmailAuthentication,
-                              //         signUpButtonText: widget.signUpButtonText,
-                              //         additionalWidget: widget.additionalWidget,
-                              //         onSignUpPressed: widget.onSignUpPressed,
-                              //         buttonColor: widget.buttonColor,
-                              //         signupAppBarText: widget.signupAppBarText,
-                              //         needConfirmPasswordinSignup:
-                              //             widget.needConfirmPasswordinSignup,
-                              //       ),
-                              //     ));
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  elevation: 6,
-                                  backgroundColor:
-                                      Theme.of(context).iconTheme.color,
-                                  behavior: SnackBarBehavior.floating,
-                                  content: const Text('Check Again'),
-                                ),
-                              );
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //       builder: (context) => SignUp(
+                                //         shouldEmailAuthentication:
+                                //             widget.shouldEmailAuthentication,
+                                //         signUpButtonText: widget.signUpButtonText,
+                                //         additionalWidget: widget.additionalWidget,
+                                //         onSignUpPressed: widget.onSignUpPressed,
+                                //         buttonColor: widget.buttonColor,
+                                //         signupAppBarText: widget.signupAppBarText,
+                                //         needConfirmPasswordinSignup:
+                                //             widget.needConfirmPasswordinSignup,
+                                //       ),
+                                //     ));
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    elevation: 6,
+                                    backgroundColor:
+                                        Theme.of(context).iconTheme.color,
+                                    behavior: SnackBarBehavior.floating,
+                                    content: const Text('Check Again'),
+                                  ),
+                                );
+                              }
                             }
-                          }
-                        })
-                  ]),
+                          })
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
         ));
