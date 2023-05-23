@@ -67,7 +67,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                   //mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    SizedBox(
+                    Container(
                       width: totalWidth / 3,
                       child: TextFormField(
                         autovalidateMode: _autoValidateEmail
@@ -104,7 +104,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                       ),
                     ),
                     SizedBox(height: 10),
-                    SizedBox(
+                    Container(
                       width: totalWidth / 3,
                       child: TextFormField(
                         autovalidateMode: _autoValidatePassword
