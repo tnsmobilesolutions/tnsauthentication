@@ -50,8 +50,8 @@ class AuthenticationWidget extends StatefulWidget {
     this.loginPageTextStyle,
     this.phoneHinttext,
     this.phoneHintTextStyle,
-    this.emailHintTextStyle,
-    this.passwordHintTextStyle,
+    this.emailTextStyle,
+    this.passwordTextStyle,
     this.signupAppBarText,
     this.needConfirmPasswordinSignup,
     this.loginButtonTextStyle,
@@ -100,8 +100,8 @@ class AuthenticationWidget extends StatefulWidget {
   String? phoneHinttext;
   String? loginButtonText;
   TextStyle? phoneHintTextStyle;
-  TextStyle? emailHintTextStyle;
-  TextStyle? passwordHintTextStyle;
+  TextStyle? emailTextStyle;
+  TextStyle? passwordTextStyle;
   TextStyle? loginButtonTextStyle;
   // bool? rememberMe;
   double? cardLeftPadding;
@@ -246,7 +246,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                         autovalidateMode: _autoValidateEmail
                                             ? AutovalidateMode.always
                                             : AutovalidateMode.disabled,
-                                        style: widget.emailHintTextStyle ??
+                                        style: widget.emailTextStyle ??
                                             TextStyle(color: Colors.black),
                                         textInputAction: TextInputAction.next,
                                         validator: (value) {
@@ -298,7 +298,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                         autovalidateMode: _autoValidatePassword
                                             ? AutovalidateMode.always
                                             : AutovalidateMode.disabled,
-                                        style: widget.passwordHintTextStyle ??
+                                        style: widget.passwordTextStyle ??
                                             TextStyle(color: Colors.black),
                                         autofocus: false,
                                         controller: passwordcontroller,
