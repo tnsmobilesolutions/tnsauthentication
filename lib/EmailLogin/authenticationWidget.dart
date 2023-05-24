@@ -304,7 +304,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                         style: widget.passwordTextStyle ??
                                             TextStyle(color: Colors.black),
                                         cursorColor:
-                                            widget.cardColor ?? Colors.black,
+                                            widget.cursorColor ?? Colors.black,
                                         autofocus: false,
                                         controller: passwordcontroller,
                                         obscureText: widget.obscureText ??
