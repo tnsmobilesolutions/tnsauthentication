@@ -301,7 +301,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                         autofocus: false,
                                         controller: passwordcontroller,
                                         obscureText: widget.obscureText ??
-                                            !_isPasswordVisible,
+                                            _isPasswordVisible,
                                         validator: (value) {
                                           RegExp regex = RegExp(r'^.{6,}$');
                                           if (!_autoValidatePassword &&
