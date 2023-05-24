@@ -276,6 +276,8 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                 .emailFieldDecoration ??
                                             InputDecoration(
                                               labelText: 'Email',
+                                              labelStyle:
+                                                  TextStyle(color: Colors.blue),
                                               focusedErrorBorder:
                                                   OutlineInputBorder(
                                                       borderSide: BorderSide(
