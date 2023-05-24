@@ -62,6 +62,7 @@ class AuthenticationWidget extends StatefulWidget {
     this.passwordFieldDecoration,
     this.passwordSuffixIcon,
     this.obscureText,
+    this.cursorColor,
   }) : super(key: key);
 
   //final VoidCallback? onTap;
@@ -73,7 +74,7 @@ class AuthenticationWidget extends StatefulWidget {
   final UserModelParamCallback? onSignUpPressed;
   final EmailVerificationCallBack? onVerifyPressed;
   final EmailBackButtonCallBack? onBackPressed;
-
+  Color? cursorColor;
   bool isSignUpVisible = false;
   bool shouldEmailAuthentication = false;
   Widget? additionalWidget;
@@ -248,6 +249,8 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                             : AutovalidateMode.disabled,
                                         style: widget.emailTextStyle ??
                                             TextStyle(color: Colors.black),
+                                        cursorColor:
+                                            widget.cursorColor ?? Colors.black,
                                         textInputAction: TextInputAction.next,
                                         validator: (value) {
                                           if (!_autoValidateEmail &&
@@ -300,6 +303,8 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                             : AutovalidateMode.disabled,
                                         style: widget.passwordTextStyle ??
                                             TextStyle(color: Colors.black),
+                                        cursorColor:
+                                            widget.cardColor ?? Colors.black,
                                         autofocus: false,
                                         controller: passwordcontroller,
                                         obscureText: widget.obscureText ??
