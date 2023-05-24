@@ -87,7 +87,7 @@ class AuthenticationWidget extends StatefulWidget {
   Color? textFieldBorderColor;
   Color? textfieldHintColor;
   TextStyle? loginPageTextStyle;
-  String? title;
+  Widget? title;
   AssetImage? loginImage;
   ImageProvider<Object>? image;
   double? imageHeight;
@@ -195,14 +195,11 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text(
-                              widget.title ?? 'Login',
-                              style: widget.loginPageTextStyle,
-                              // TextStyle(
-                              //     fontSize: 40,
-                              //     fontWeight: FontWeight.bold,
-                              //     color: titleTextColor ?? Colors.black),
-                            ),
+                            widget.title ??
+                                Text(
+                                  'Login',
+                                  style: widget.loginPageTextStyle,
+                                ),
                             SizedBox(height: 20),
                             widget.phoneAuthentication == true
                                 ? TextFormField(
