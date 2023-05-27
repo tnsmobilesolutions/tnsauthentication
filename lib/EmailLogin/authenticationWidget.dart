@@ -401,14 +401,16 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                     ],
                                   ),
                             SizedBox(height: 10),
-                            TextButton(
-                              onPressed: widget.onForgetPassword,
-                              child: Text(
-                                'Forgot Password ?',
-                                style: widget.forgotPasswordTextStyle ??
-                                    TextStyle(),
-                              ),
-                            ),
+                            widget.forgetPasswordVisibilty == true
+                                ? TextButton(
+                                    onPressed: widget.onForgetPassword,
+                                    child: Text(
+                                      'Forgot Password ?',
+                                      style: widget.forgotPasswordTextStyle ??
+                                          TextStyle(),
+                                    ),
+                                  )
+                                : SizedBox(),
                             SizedBox(height: 10),
                             CupertinoButton(
                               color: widget.buttonColor ?? Colors.cyanAccent,
