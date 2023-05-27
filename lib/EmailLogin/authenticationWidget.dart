@@ -11,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 typedef DoubleStringParamCallback<T, E> = Function(T first, E second);
+typedef ForgetPasswordCallback = void Function();
 typedef SingleStringParamCallback = Function(String phoneNumber);
 typedef ModelParamCallback = Function(String? email, String? password,
     String? name, String? userId, String? mobile);
@@ -63,6 +64,9 @@ class AuthenticationWidget extends StatefulWidget {
     this.passwordSuffixIcon,
     this.obscureText,
     this.cursorColor,
+    this.forgetPasswordVisibilty,
+    this.onForgetPassword,
+    this.forgotPasswordTextStyle,
   }) : super(key: key);
 
   //final VoidCallback? onTap;
@@ -74,6 +78,7 @@ class AuthenticationWidget extends StatefulWidget {
   final UserModelParamCallback? onSignUpPressed;
   final EmailVerificationCallBack? onVerifyPressed;
   final EmailBackButtonCallBack? onBackPressed;
+  final ForgetPasswordCallback? onForgetPassword;
   Color? cursorColor;
   bool isSignUpVisible = false;
   bool shouldEmailAuthentication = false;
@@ -111,6 +116,8 @@ class AuthenticationWidget extends StatefulWidget {
   InputDecoration? emailFieldDecoration, passwordFieldDecoration;
   IconButton? passwordSuffixIcon;
   bool? obscureText;
+  bool? forgetPasswordVisibilty = false;
+  TextStyle? forgotPasswordTextStyle;
   @override
   State<AuthenticationWidget> createState() => _AuthenticationWidgetState();
 }
@@ -393,6 +400,15 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                       //     : SizedBox()
                                     ],
                                   ),
+                            SizedBox(height: 10),
+                            TextButton(
+                              onPressed: widget.onForgetPassword,
+                              child: Text(
+                                'Forgot Password ?',
+                                style: widget.forgotPasswordTextStyle ??
+                                    TextStyle(),
+                              ),
+                            ),
                             SizedBox(height: 10),
                             CupertinoButton(
                               color: widget.buttonColor ?? Colors.cyanAccent,
