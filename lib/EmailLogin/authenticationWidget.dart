@@ -11,7 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 typedef DoubleStringParamCallback<T, E> = Function(T first, E second);
-typedef ForgetPasswordCallback = void Function();
+typedef ForgetPasswordCallback = Function(String email);
 typedef SingleStringParamCallback = Function(String phoneNumber);
 typedef ModelParamCallback = Function(String? email, String? password,
     String? name, String? userId, String? mobile);
@@ -403,7 +403,10 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                             SizedBox(height: 20),
                             widget.forgetPasswordVisibilty == true
                                 ? TextButton(
-                                    onPressed: widget.onForgetPassword,
+                                    onPressed: () {
+                                      widget.onForgetPassword!(
+                                          emailcontroller.text);
+                                    },
                                     child: Text(
                                       'Forgot Password ?',
                                       style: widget.forgotPasswordTextStyle ??
