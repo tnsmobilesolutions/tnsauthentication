@@ -400,7 +400,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                       //     : SizedBox()
                                     ],
                                   ),
-                            SizedBox(height: 10),
+                            SizedBox(height: 20),
                             widget.forgetPasswordVisibilty == true
                                 ? TextButton(
                                     onPressed: widget.onForgetPassword,
