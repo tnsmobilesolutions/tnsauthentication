@@ -401,19 +401,48 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                       widget.rememberMe == true
                                           ? Row(
                                               children: [
-                                                Text('Remember Me ?'),
-                                                SizedBox(width: 10),
-                                                Switch(
-                                                  value: _isSwitched,
-                                                  onChanged: (value) {
-                                                    setState(() {
-                                                      _isSwitched = value;
-                                                    });
-                                                  },
-                                                  activeTrackColor: Colors.blue,
-                                                  activeColor: Color.fromARGB(
-                                                      255, 0, 75, 137),
+                                                ClipOval(
+                                                  child: Material(
+                                                    color: Color.fromARGB(
+                                                        255,
+                                                        110,
+                                                        184,
+                                                        245), // Button color
+                                                    child: InkWell(
+                                                      splashColor: Color.fromARGB(
+                                                          255,
+                                                          172,
+                                                          212,
+                                                          245), // Splash color
+                                                      onTap: () {
+                                                        setState(() {
+                                                          _isChecked =
+                                                              !_isChecked;
+                                                        });
+                                                      },
+                                                      child: SizedBox(
+                                                          width: 56,
+                                                          height: 56,
+                                                          child:
+                                                              Icon(Icons.done)),
+                                                    ),
+                                                  ),
                                                 ),
+                                                SizedBox(width: 10),
+
+                                                Text('Remember me'),
+                                                SizedBox(width: 10),
+                                                // Switch(
+                                                //   value: _isSwitched,
+                                                //   onChanged: (value) {
+                                                //     setState(() {
+                                                //       _isSwitched = value;
+                                                //     });
+                                                //   },
+                                                //   activeTrackColor: Colors.blue,
+                                                //   activeColor: Color.fromARGB(
+                                                //       255, 0, 75, 137),
+                                                // ),
                                               ],
                                             )
                                           //  CheckboxListTile(
