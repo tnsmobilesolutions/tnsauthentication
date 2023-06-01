@@ -423,6 +423,11 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           },
                                                           icon: Icon(
                                                             Icons.done,
+                                                            size: 18,
+                                                            color: _isChecked
+                                                                ? widget
+                                                                    .rememberMeIconColor
+                                                                : Colors.grey,
                                                           ),
                                                         ),
                                                     // MaterialButton(
@@ -450,11 +455,11 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                     //           .rememberMeIcon ??
                                                     //       Icon(
                                                     //         Icons.done,
-                                                    //         color: _isChecked
-                                                    //             ? widget
-                                                    //                 .rememberMeIconColor
-                                                    //             : Colors
-                                                    //                 .white,
+                                                    // color: _isChecked
+                                                    //     ? widget
+                                                    //         .rememberMeIconColor
+                                                    //     : Colors
+                                                    //         .white,
                                                     //         size: 17,
                                                     //       ),
                                                     // ),
