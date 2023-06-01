@@ -71,6 +71,8 @@ class AuthenticationWidget extends StatefulWidget {
     this.onRememberMePressed,
     this.rememberMeBackgroundColor,
     this.rememberMeIconColor,
+    this.rememberMeWidget,
+    this.rememberMeIcon,
   }) : super(key: key);
 
   Widget? additionalWidget;
@@ -113,7 +115,6 @@ class AuthenticationWidget extends StatefulWidget {
   TextStyle? passwordTextStyle;
   //final VoidCallback? onTap;
   bool phoneAuthentication = false;
-
   TextStyle? phoneHintTextStyle;
   String? phoneHinttext;
   bool? rememberMe;
@@ -126,6 +127,8 @@ class AuthenticationWidget extends StatefulWidget {
   Widget? title;
   Color? rememberMeIconColor;
   Color? rememberMeBackgroundColor;
+  Widget? rememberMeIcon;
+  Widget? rememberMeWidget;
 
   @override
   State<AuthenticationWidget> createState() => _AuthenticationWidgetState();
@@ -408,18 +411,25 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                 SizedBox(height: 20),
                                                 Row(
                                                   children: [
-                                                    MaterialButton(
-                                                      onPressed: () {},
-                                                      color: Colors.blue,
-                                                      textColor: Colors.white,
-                                                      padding:
-                                                          EdgeInsets.all(16),
-                                                      shape: CircleBorder(),
-                                                      child: Icon(
-                                                        Icons.camera_alt,
-                                                        size: 24,
-                                                      ),
-                                                    ),
+                                                    widget.rememberMeWidget ??
+                                                        MaterialButton(
+                                                          onPressed: () {},
+                                                          color: widget
+                                                                  .rememberMeBackgroundColor ??
+                                                              Colors.blue,
+                                                          textColor:
+                                                              Colors.white,
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  16),
+                                                          shape: CircleBorder(),
+                                                          child: widget
+                                                                  .rememberMeIcon ??
+                                                              Icon(
+                                                                Icons.done,
+                                                                size: 17,
+                                                              ),
+                                                        ),
                                                     // ClipOval(
                                                     //   child: Material(
                                                     //     color: _isChecked
