@@ -411,35 +411,25 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                 SizedBox(height: 20),
                                                 Row(
                                                   children: [
-                                                    Ink(
-                                                      decoration:
-                                                          ShapeDecoration(
-                                                        color: widget
-                                                                .rememberMeBackgroundColor ??
-                                                            Colors.blue,
-                                                        shape: CircleBorder(),
-                                                      ),
-                                                      child: widget
-                                                              .rememberMeWidget ??
-                                                          IconButton(
-                                                            onPressed: () {
-                                                              setState(() {
-                                                                _isChecked =
-                                                                    !_isChecked;
-                                                                widget
-                                                                    .onRememberMePressed;
-                                                              });
-                                                            },
-                                                            icon: Icon(
-                                                              Icons.done,
-                                                              size: 18,
-                                                              color: _isChecked
-                                                                  ? widget
-                                                                      .rememberMeIconColor
-                                                                  : Colors.grey,
-                                                            ),
+                                                    widget.rememberMeWidget ??
+                                                        IconButton(
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              _isChecked =
+                                                                  !_isChecked;
+                                                              widget
+                                                                  .onRememberMePressed;
+                                                            });
+                                                          },
+                                                          icon: Icon(
+                                                            Icons.done,
+                                                            size: 18,
+                                                            color: _isChecked
+                                                                ? widget
+                                                                    .rememberMeIconColor
+                                                                : Colors.grey,
                                                           ),
-                                                    ),
+                                                        ),
                                                     SizedBox(width: 5),
                                                     Text('Remember me'),
                                                   ],
