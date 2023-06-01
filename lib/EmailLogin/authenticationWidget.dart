@@ -69,74 +69,78 @@ class AuthenticationWidget extends StatefulWidget {
     this.onForgetPassword,
     this.forgotPasswordTextStyle,
     this.onRememberMePressed,
+    this.rememberMeBackgroundColor,
+    this.rememberMeIconColor,
   }) : super(key: key);
 
-  //final VoidCallback? onTap;
-  bool phoneAuthentication = false;
-  String? signUpButtonText;
-  String? signupAppBarText;
-  final DoubleStringParamCallback? onEmailLoginPressed;
-  final SingleStringParamCallback? onPhoneLoginPressed;
-  final UserModelParamCallback? onSignUpPressed;
-  final EmailVerificationCallBack? onVerifyPressed;
-  final EmailBackButtonCallBack? onBackPressed;
-  final ForgetPasswordCallback? onForgetPassword;
-  final RememberMeCallback? onRememberMePressed;
-  Color? cursorColor;
-  bool isSignUpVisible = false;
-  bool shouldEmailAuthentication = false;
   Widget? additionalWidget;
-  Color? cardColor;
   Color? buttonColor;
-  Color? scaffoldbackGroundColor;
-  bool? needConfirmPasswordinSignup;
-  // InputDecoration? textformFieldInputDecoration;
-  Color? loginButonTextColor;
-  Color? textFieldBorderColor;
-  Color? textfieldHintColor;
-  TextStyle? loginPageTextStyle;
-  Widget? title;
-  AssetImage? loginImage;
+  Color? cardColor;
+  double? cardElevation;
+  double? cardHeight;
+  double? cardLeftPadding;
+  double? cardRightPadding;
+  double? cardWidth;
+  Color? cursorColor;
+  String? emailFieldhintText;
+  TextStyle? emailTextStyle;
+  bool? forgetPasswordVisibilty = false;
+  TextStyle? forgotPasswordTextStyle;
   ImageProvider<Object>? image;
   double? imageHeight;
   double? imageWidth;
-  double? cardHeight;
-  double? cardWidth;
-  bool? isImageVisible = false;
   bool? isBiometricAvailable = false;
-  String? emailFieldhintText;
-  String? passwordFieldFieldhintText;
-  String? phoneHinttext;
+  bool? isImageVisible = false;
+  bool isSignUpVisible = false;
+  // InputDecoration? textformFieldInputDecoration;
+  Color? loginButonTextColor;
   String? loginButtonText;
-  TextStyle? phoneHintTextStyle;
-  TextStyle? emailTextStyle;
-  TextStyle? passwordTextStyle;
   TextStyle? loginButtonTextStyle;
-  bool? rememberMe;
-  double? cardLeftPadding;
-  double? cardRightPadding;
-  double? cardElevation;
-  InputDecoration? emailFieldDecoration, passwordFieldDecoration;
-  IconButton? passwordSuffixIcon;
+  AssetImage? loginImage;
+  TextStyle? loginPageTextStyle;
+  bool? needConfirmPasswordinSignup;
   bool? obscureText;
-  bool? forgetPasswordVisibilty = false;
-  TextStyle? forgotPasswordTextStyle;
+  final EmailBackButtonCallBack? onBackPressed;
+  final DoubleStringParamCallback? onEmailLoginPressed;
+  final ForgetPasswordCallback? onForgetPassword;
+  final SingleStringParamCallback? onPhoneLoginPressed;
+  final RememberMeCallback? onRememberMePressed;
+  final UserModelParamCallback? onSignUpPressed;
+  final EmailVerificationCallBack? onVerifyPressed;
+  InputDecoration? emailFieldDecoration, passwordFieldDecoration;
+  String? passwordFieldFieldhintText;
+  IconButton? passwordSuffixIcon;
+  TextStyle? passwordTextStyle;
+  //final VoidCallback? onTap;
+  bool phoneAuthentication = false;
+
+  TextStyle? phoneHintTextStyle;
+  String? phoneHinttext;
+  bool? rememberMe;
+  Color? scaffoldbackGroundColor;
+  bool shouldEmailAuthentication = false;
+  String? signUpButtonText;
+  String? signupAppBarText;
+  Color? textFieldBorderColor;
+  Color? textfieldHintColor;
+  Widget? title;
+  Color? rememberMeIconColor;
+  Color? rememberMeBackgroundColor;
+
   @override
   State<AuthenticationWidget> createState() => _AuthenticationWidgetState();
 }
 
 class _AuthenticationWidgetState extends State<AuthenticationWidget> {
   final emailcontroller = TextEditingController();
-
   final passwordcontroller = TextEditingController();
-
   final TextEditingController phoneController = TextEditingController();
 
-  final _formkey = GlobalKey<FormState>();
-  bool _isPasswordVisible = true;
   bool _autoValidateEmail = false;
   bool _autoValidatePassword = false;
+  final _formkey = GlobalKey<FormState>();
   bool _isChecked = false;
+  bool _isPasswordVisible = true;
   bool _isSwitched = false;
 
   // bool _containsAtleast8Characters(String? password) {
@@ -399,50 +403,69 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                             ),
                                       ),
                                       widget.rememberMe == true
-                                          ? Row(
+                                          ? Column(
                                               children: [
-                                                ClipOval(
-                                                  child: Material(
-                                                    color: Color.fromARGB(
-                                                        255,
-                                                        110,
-                                                        184,
-                                                        245), // Button color
-                                                    child: InkWell(
-                                                      splashColor: Color.fromARGB(
-                                                          255,
-                                                          172,
-                                                          212,
-                                                          245), // Splash color
-                                                      onTap: () {
-                                                        setState(() {
-                                                          _isChecked =
-                                                              !_isChecked;
-                                                        });
-                                                      },
-                                                      child: SizedBox(
-                                                          width: 30,
-                                                          height: 30,
-                                                          child:
-                                                              Icon(Icons.done)),
+                                                SizedBox(height: 20),
+                                                Row(
+                                                  children: [
+                                                    ClipOval(
+                                                      child: Material(
+                                                        color: _isChecked
+                                                            ? widget.rememberMeBackgroundColor ??
+                                                                Color.fromARGB(
+                                                                    240,
+                                                                    173,
+                                                                    188,
+                                                                    252)
+                                                            : Colors
+                                                                .white, // Button color
+                                                        child: InkWell(
+                                                          splashColor:
+                                                              Color.fromARGB(
+                                                                  255,
+                                                                  172,
+                                                                  212,
+                                                                  245), // Splash color
+                                                          onTap: () {
+                                                            setState(() {
+                                                              _isChecked =
+                                                                  !_isChecked;
+                                                            });
+                                                          },
+                                                          child: SizedBox(
+                                                            width: 15,
+                                                            height: 15,
+                                                            child: Icon(
+                                                              Icons.done,
+                                                              color: widget
+                                                                      .rememberMeIconColor ??
+                                                                  Color
+                                                                      .fromARGB(
+                                                                          242,
+                                                                          44,
+                                                                          73,
+                                                                          199),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
                                                     ),
-                                                  ),
+                                                    SizedBox(width: 10),
+                                                    Text('Remember me'),
+                                                    //SizedBox(width: 10),
+                                                    // Switch(
+                                                    //   value: _isSwitched,
+                                                    //   onChanged: (value) {
+                                                    //     setState(() {
+                                                    //       _isSwitched = value;
+                                                    //     });
+                                                    //   },
+                                                    //   activeTrackColor: Colors.blue,
+                                                    //   activeColor: Color.fromARGB(
+                                                    //       255, 0, 75, 137),
+                                                    // ),
+                                                  ],
                                                 ),
-                                                SizedBox(width: 10),
-
-                                                Text('Remember me'),
-                                                SizedBox(width: 10),
-                                                // Switch(
-                                                //   value: _isSwitched,
-                                                //   onChanged: (value) {
-                                                //     setState(() {
-                                                //       _isSwitched = value;
-                                                //     });
-                                                //   },
-                                                //   activeTrackColor: Colors.blue,
-                                                //   activeColor: Color.fromARGB(
-                                                //       255, 0, 75, 137),
-                                                // ),
                                               ],
                                             )
                                           //  CheckboxListTile(
