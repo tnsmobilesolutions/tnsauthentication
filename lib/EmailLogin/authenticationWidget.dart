@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 typedef DoubleStringParamCallback<T, E> = Function(T first, E second);
 typedef ForgetPasswordCallback = Function(String email);
 typedef SingleStringParamCallback = Function(String phoneNumber);
+typedef RememberMeCallback = Function();
 typedef ModelParamCallback = Function(String? email, String? password,
     String? name, String? userId, String? mobile);
 
@@ -44,7 +45,7 @@ class AuthenticationWidget extends StatefulWidget {
     this.cardHeight,
     this.cardWidth,
     this.isBiometricAvailable,
-    //this.rememberMe,
+    this.rememberMe,
     this.loginButonTextColor,
     this.textFieldBorderColor,
     this.textfieldHintColor,
@@ -67,6 +68,7 @@ class AuthenticationWidget extends StatefulWidget {
     this.forgetPasswordVisibilty,
     this.onForgetPassword,
     this.forgotPasswordTextStyle,
+    this.onRememberMePressed,
   }) : super(key: key);
 
   //final VoidCallback? onTap;
@@ -79,6 +81,7 @@ class AuthenticationWidget extends StatefulWidget {
   final EmailVerificationCallBack? onVerifyPressed;
   final EmailBackButtonCallBack? onBackPressed;
   final ForgetPasswordCallback? onForgetPassword;
+  final RememberMeCallback? onRememberMePressed;
   Color? cursorColor;
   bool isSignUpVisible = false;
   bool shouldEmailAuthentication = false;
@@ -109,7 +112,7 @@ class AuthenticationWidget extends StatefulWidget {
   TextStyle? emailTextStyle;
   TextStyle? passwordTextStyle;
   TextStyle? loginButtonTextStyle;
-  // bool? rememberMe;
+  bool? rememberMe;
   double? cardLeftPadding;
   double? cardRightPadding;
   double? cardElevation;
@@ -131,10 +134,9 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
 
   final _formkey = GlobalKey<FormState>();
   bool _isPasswordVisible = true;
-
   bool _autoValidateEmail = false;
-
   bool _autoValidatePassword = false;
+  bool _isChecked = false;
 
   // bool _containsAtleast8Characters(String? password) {
   //   return password!.length >= 8;
@@ -395,9 +397,21 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                       color: Colors.grey)),
                                             ),
                                       ),
-                                      // rememberMe!
-                                      //     ? RememberMeCheckbox()
-                                      //     : SizedBox()
+                                      widget.rememberMe == true
+                                          ? CheckboxListTile(
+                                              title: Text('Remember Me'),
+                                              value: _isChecked,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  _isChecked = value!;
+                                                  _isChecked == true
+                                                      ? widget
+                                                          .onRememberMePressed
+                                                      : null;
+                                                });
+                                              },
+                                            )
+                                          : SizedBox()
                                     ],
                                   ),
                             SizedBox(height: 20),
