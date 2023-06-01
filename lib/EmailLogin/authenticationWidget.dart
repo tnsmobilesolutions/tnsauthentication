@@ -421,8 +421,8 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                         });
                                                       },
                                                       child: SizedBox(
-                                                          width: 56,
-                                                          height: 56,
+                                                          width: 30,
+                                                          height: 30,
                                                           child:
                                                               Icon(Icons.done)),
                                                     ),
