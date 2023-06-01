@@ -411,132 +411,41 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                 SizedBox(height: 20),
                                                 Row(
                                                   children: [
-                                                    widget.rememberMeWidget ??
-                                                        IconButton(
-                                                          onPressed: () {
-                                                            setState(() {
-                                                              _isChecked =
-                                                                  !_isChecked;
-                                                              widget
-                                                                  .onRememberMePressed;
-                                                            });
-                                                          },
-                                                          icon: Icon(
-                                                            Icons.done,
-                                                            size: 18,
-                                                            color: _isChecked
-                                                                ? widget
-                                                                    .rememberMeIconColor
-                                                                : Colors.grey,
+                                                    Ink(
+                                                      decoration:
+                                                          ShapeDecoration(
+                                                        color: widget
+                                                                .rememberMeBackgroundColor ??
+                                                            Colors.blue,
+                                                        shape: CircleBorder(),
+                                                      ),
+                                                      child: widget
+                                                              .rememberMeWidget ??
+                                                          IconButton(
+                                                            onPressed: () {
+                                                              setState(() {
+                                                                _isChecked =
+                                                                    !_isChecked;
+                                                                widget
+                                                                    .onRememberMePressed;
+                                                              });
+                                                            },
+                                                            icon: Icon(
+                                                              Icons.done,
+                                                              size: 18,
+                                                              color: _isChecked
+                                                                  ? widget
+                                                                      .rememberMeIconColor
+                                                                  : Colors.grey,
+                                                            ),
                                                           ),
-                                                        ),
-                                                    // MaterialButton(
-                                                    //   onPressed: () {
-                                                    //     setState(() {
-                                                    //       _isChecked =
-                                                    //           !_isChecked;
-                                                    //       widget
-                                                    //           .onRememberMePressed;
-                                                    //     });
-                                                    //   },
-                                                    //   elevation: 0,
-                                                    //   color: _isChecked
-                                                    //       ? widget.rememberMeBackgroundColor ??
-                                                    //           Colors.blue
-                                                    //       : Colors.white,
-                                                    //   textColor:
-                                                    //       Colors.white,
-                                                    //   padding:
-                                                    //       EdgeInsets.all(
-                                                    //           16),
-                                                    //   shape:
-                                                    //       CircleBorder(),
-                                                    //   child: widget
-                                                    //           .rememberMeIcon ??
-                                                    //       Icon(
-                                                    //         Icons.done,
-                                                    // color: _isChecked
-                                                    //     ? widget
-                                                    //         .rememberMeIconColor
-                                                    //     : Colors
-                                                    //         .white,
-                                                    //         size: 17,
-                                                    //       ),
-                                                    // ),
-
-                                                    // ClipOval(
-                                                    //   child: Material(
-                                                    //     color: _isChecked
-                                                    //         ? widget.rememberMeBackgroundColor ??
-                                                    //             Color.fromARGB(
-                                                    //                 240,
-                                                    //                 173,
-                                                    //                 188,
-                                                    //                 252)
-                                                    //         : Colors
-                                                    //             .white, // Button color
-                                                    //     child: InkWell(
-                                                    //       splashColor:
-                                                    //           Color.fromARGB(
-                                                    //               255,
-                                                    //               172,
-                                                    //               212,
-                                                    //               245), // Splash color
-                                                    //       onTap: () {
-                                                    //         setState(() {
-                                                    //           _isChecked =
-                                                    //               !_isChecked;
-                                                    //         });
-                                                    //       },
-                                                    //       child: SizedBox(
-                                                    //         width: 15,
-                                                    //         height: 15,
-                                                    //         child: Icon(
-                                                    //           Icons.done,
-                                                    //           color: widget
-                                                    //                   .rememberMeIconColor ??
-                                                    //               Color
-                                                    //                   .fromARGB(
-                                                    //                       242,
-                                                    //                       44,
-                                                    //                       73,
-                                                    //                       199),
-                                                    //         ),
-                                                    //       ),
-                                                    //     ),
-                                                    //   ),
-                                                    // ),
-                                                    SizedBox(width: 10),
+                                                    ),
+                                                    SizedBox(width: 5),
                                                     Text('Remember me'),
-                                                    //SizedBox(width: 10),
-                                                    // Switch(
-                                                    //   value: _isSwitched,
-                                                    //   onChanged: (value) {
-                                                    //     setState(() {
-                                                    //       _isSwitched = value;
-                                                    //     });
-                                                    //   },
-                                                    //   activeTrackColor: Colors.blue,
-                                                    //   activeColor: Color.fromARGB(
-                                                    //       255, 0, 75, 137),
-                                                    // ),
                                                   ],
                                                 ),
                                               ],
                                             )
-                                          //  CheckboxListTile(
-                                          //     title: Text('Remember Me'),
-                                          //     value: _isChecked,
-                                          //     onChanged: (value) {
-                                          //       setState(() {
-                                          //         _isChecked = value!;
-                                          //         _isChecked == true
-                                          //             ? widget
-                                          //                 .onRememberMePressed
-                                          //             : null;
-                                          //       });
-                                          //     },
-                                          //   )
                                           : SizedBox()
                                     ],
                                   ),
