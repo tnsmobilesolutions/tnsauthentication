@@ -408,48 +408,60 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                 SizedBox(height: 20),
                                                 Row(
                                                   children: [
-                                                    ClipOval(
-                                                      child: Material(
-                                                        color: _isChecked
-                                                            ? widget.rememberMeBackgroundColor ??
-                                                                Color.fromARGB(
-                                                                    240,
-                                                                    173,
-                                                                    188,
-                                                                    252)
-                                                            : Colors
-                                                                .white, // Button color
-                                                        child: InkWell(
-                                                          splashColor:
-                                                              Color.fromARGB(
-                                                                  255,
-                                                                  172,
-                                                                  212,
-                                                                  245), // Splash color
-                                                          onTap: () {
-                                                            setState(() {
-                                                              _isChecked =
-                                                                  !_isChecked;
-                                                            });
-                                                          },
-                                                          child: SizedBox(
-                                                            width: 15,
-                                                            height: 15,
-                                                            child: Icon(
-                                                              Icons.done,
-                                                              color: widget
-                                                                      .rememberMeIconColor ??
-                                                                  Color
-                                                                      .fromARGB(
-                                                                          242,
-                                                                          44,
-                                                                          73,
-                                                                          199),
-                                                            ),
-                                                          ),
-                                                        ),
+                                                    MaterialButton(
+                                                      onPressed: () {},
+                                                      color: Colors.blue,
+                                                      textColor: Colors.white,
+                                                      padding:
+                                                          EdgeInsets.all(16),
+                                                      shape: CircleBorder(),
+                                                      child: Icon(
+                                                        Icons.camera_alt,
+                                                        size: 24,
                                                       ),
                                                     ),
+                                                    // ClipOval(
+                                                    //   child: Material(
+                                                    //     color: _isChecked
+                                                    //         ? widget.rememberMeBackgroundColor ??
+                                                    //             Color.fromARGB(
+                                                    //                 240,
+                                                    //                 173,
+                                                    //                 188,
+                                                    //                 252)
+                                                    //         : Colors
+                                                    //             .white, // Button color
+                                                    //     child: InkWell(
+                                                    //       splashColor:
+                                                    //           Color.fromARGB(
+                                                    //               255,
+                                                    //               172,
+                                                    //               212,
+                                                    //               245), // Splash color
+                                                    //       onTap: () {
+                                                    //         setState(() {
+                                                    //           _isChecked =
+                                                    //               !_isChecked;
+                                                    //         });
+                                                    //       },
+                                                    //       child: SizedBox(
+                                                    //         width: 15,
+                                                    //         height: 15,
+                                                    //         child: Icon(
+                                                    //           Icons.done,
+                                                    //           color: widget
+                                                    //                   .rememberMeIconColor ??
+                                                    //               Color
+                                                    //                   .fromARGB(
+                                                    //                       242,
+                                                    //                       44,
+                                                    //                       73,
+                                                    //                       199),
+                                                    //         ),
+                                                    //       ),
+                                                    //     ),
+                                                    //   ),
+                                                    // ),
                                                     SizedBox(width: 10),
                                                     Text('Remember me'),
                                                     //SizedBox(width: 10),
