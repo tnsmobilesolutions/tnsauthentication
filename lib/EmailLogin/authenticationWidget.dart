@@ -137,6 +137,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
   bool _autoValidateEmail = false;
   bool _autoValidatePassword = false;
   bool _isChecked = false;
+  bool _isSwitched = false;
 
   // bool _containsAtleast8Characters(String? password) {
   //   return password!.length >= 8;
@@ -398,19 +399,36 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                             ),
                                       ),
                                       widget.rememberMe == true
-                                          ? CheckboxListTile(
-                                              title: Text('Remember Me'),
-                                              value: _isChecked,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  _isChecked = value!;
-                                                  _isChecked == true
-                                                      ? widget
-                                                          .onRememberMePressed
-                                                      : null;
-                                                });
-                                              },
+                                          ? Row(
+                                              children: [
+                                                Text('Remember Me ?'),
+                                                SizedBox(width: 10),
+                                                Switch(
+                                                  value: _isSwitched,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      _isSwitched = value;
+                                                    });
+                                                  },
+                                                  activeTrackColor: Colors.blue,
+                                                  activeColor: Color.fromARGB(
+                                                      255, 0, 75, 137),
+                                                ),
+                                              ],
                                             )
+                                          //  CheckboxListTile(
+                                          //     title: Text('Remember Me'),
+                                          //     value: _isChecked,
+                                          //     onChanged: (value) {
+                                          //       setState(() {
+                                          //         _isChecked = value!;
+                                          //         _isChecked == true
+                                          //             ? widget
+                                          //                 .onRememberMePressed
+                                          //             : null;
+                                          //       });
+                                          //     },
+                                          //   )
                                           : SizedBox()
                                     ],
                                   ),
