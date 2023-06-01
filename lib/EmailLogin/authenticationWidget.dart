@@ -413,7 +413,12 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                   children: [
                                                     widget.rememberMeWidget ??
                                                         MaterialButton(
-                                                          onPressed: () {},
+                                                          onPressed: () {
+                                                            _isChecked =
+                                                                !_isChecked;
+                                                            widget
+                                                                .onRememberMePressed;
+                                                          },
                                                           elevation: 0,
                                                           color: widget
                                                                   .rememberMeBackgroundColor ??
