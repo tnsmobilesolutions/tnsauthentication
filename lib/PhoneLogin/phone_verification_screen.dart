@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
+// ignore: must_be_immutable
 class VerificationScreen extends StatefulWidget {
   VerificationScreen({Key? key, required this.phoneNumber}) : super(key: key);
   String phoneNumber;
@@ -50,6 +51,7 @@ class _VerificationScreen extends State<VerificationScreen> {
                             controller: otpController,
                             length: 6,
                             showCursor: true,
+                            // ignore: avoid_print
                             onCompleted: (pin) => print(pin),
                           ),
 

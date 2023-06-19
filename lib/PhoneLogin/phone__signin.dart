@@ -1,6 +1,7 @@
-import 'package:authentication/PhoneLogin/PhoneVerificationScreen.dart';
+import 'package:authentication/PhoneLogin/phone_verification_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 
 typedef SingleStringParamCallback = Function(String phoneNumber);
 
@@ -10,7 +11,7 @@ class PhoneSignIn extends StatelessWidget {
   final _formkey = GlobalKey<FormState>();
   final SingleStringParamCallback onPhoneLoginPressed;
 
-  final TextEditingController PhoneController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -48,13 +49,13 @@ class PhoneSignIn extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 40, fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           TextFormField(
                             autofocus: false,
-                            controller: PhoneController,
+                            controller: phoneController,
                             keyboardType: TextInputType.phone,
                             onSaved: (value) {
-                              value = PhoneController.text;
+                              value = phoneController.text;
                             },
                             textInputAction: TextInputAction.next,
                             decoration: const InputDecoration(
@@ -63,7 +64,7 @@ class PhoneSignIn extends StatelessWidget {
                               hintText: 'Phone Number',
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           CupertinoButton(
@@ -71,13 +72,13 @@ class PhoneSignIn extends StatelessWidget {
                               child: const Text('Send OTP'),
                               onPressed: () {
                                 onPhoneLoginPressed(
-                                    PhoneController.text.trim());
+                                    phoneController.text.trim());
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => VerificationScreen(
                                           phoneNumber:
-                                              PhoneController.text.trim()),
+                                              phoneController.text.trim()),
                                     ));
                               }),
                         ],
@@ -92,9 +93,9 @@ class PhoneSignIn extends StatelessWidget {
               ],
             )),
       ),
-      bottomSheet: Row(
+      bottomSheet: const Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
+        children: [
           Text('SignIn with Email'),
         ],
       ),

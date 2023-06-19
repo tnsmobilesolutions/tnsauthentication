@@ -1,9 +1,7 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'dart:developer';
-
-import 'package:authentication/EmailLogin/authenticationWidget.dart';
+import 'package:authentication/EmailLogin/authentication_widget.dart';
 import 'package:flutter/material.dart';
+
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -13,7 +11,7 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  final TextEditingController PhoneController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(

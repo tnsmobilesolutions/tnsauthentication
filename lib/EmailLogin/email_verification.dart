@@ -1,13 +1,15 @@
 // ignore_for_file: must_be_immutable, prefer_const_constructors
 
+
 import 'package:authentication/EmailLogin/sign_up.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+
 // typedef UserModelParamCallback = Function(String? email, String? password,
 //     String? name, String? userId, String? mobile);
 typedef EmailVerificationCallBack = Function(String? email, String? password);
-typedef EmailBackButtonCallBack = Function();
+typedef FunctionCallBack = Function();
 
 class EmailVerification extends StatefulWidget {
   EmailVerification({
@@ -21,9 +23,10 @@ class EmailVerification extends StatefulWidget {
     this.signUpButtonText,
     this.signupAppBarText,
     this.onBackPressed,
+   
   }) : super(key: key);
   final UserModelParamCallback? onSignUpPressed;
-  final EmailBackButtonCallBack? onBackPressed;
+  final FunctionCallBack? onBackPressed;
   final EmailVerificationCallBack? onVerifyPressed;
   bool shouldEmailAuthentication;
   Widget? additionalWidget;
@@ -51,7 +54,7 @@ class _EmailVerificationState extends State<EmailVerification> {
           title: Text('Verification'),
           leading: IconButton(
             onPressed: () {
-              widget.onBackPressed != null ? widget.onBackPressed!() : null;
+              widget.onBackPressed != null ? widget.onBackPressed!() : Navigator.pop(context);
             },
             icon: Icon(
               Icons.arrow_back_rounded,
@@ -93,7 +96,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                             _autoValidateEmail = true;
                           });
                         },
-                        decoration: const InputDecoration(
+                        decoration:  InputDecoration(
                           icon: Icon(Icons.email),
                           hintText: 'Enter Your Email',
                           hintStyle: TextStyle(
@@ -119,7 +122,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                         controller: passwordController,
                         onSaved: (newValue) => passwordController,
                         validator: (value) {
-                          RegExp regex = RegExp(r'^.{6,}$');
+                          // RegExp regex = RegExp(r'^.{6,}$');
                           if (!_autoValidatePassword &&
                               (value == null || value.isEmpty)) {
                             return ("Password is required for login");

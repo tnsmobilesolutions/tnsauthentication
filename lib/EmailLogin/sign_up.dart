@@ -1,14 +1,14 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:authentication/EmailLogin/email_verification.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:uuid/uuid.dart';
 
 typedef UserModelParamCallback = Function(String? email, String? password,
     String? name, String? userId, String? mobile);
 
+// ignore: must_be_immutable
 class SignUp extends StatefulWidget {
   SignUp({
     Key? key,
@@ -78,7 +78,7 @@ class _SignUpState extends State<SignUp> {
                       fillColor: Colors.grey,
                       focusColor: Colors.grey),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 widget.shouldEmailAuthentication == false
                     ? TextFormField(
                         keyboardType: TextInputType.emailAddress,
@@ -107,8 +107,8 @@ class _SignUpState extends State<SignUp> {
                             fillColor: Colors.grey,
                             focusColor: Colors.grey),
                       )
-                    : SizedBox(),
-                SizedBox(height: 10),
+                    : const SizedBox(),
+                const SizedBox(height: 10),
                 TextFormField(
                   keyboardType: TextInputType.phone,
                   controller: mobileController,
@@ -131,7 +131,7 @@ class _SignUpState extends State<SignUp> {
                       fillColor: Colors.grey,
                       focusColor: Colors.grey),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 widget.shouldEmailAuthentication == false
                     ? TextFormField(
                         obscureText: ispasswordVisible,
@@ -164,15 +164,15 @@ class _SignUpState extends State<SignUp> {
                                 });
                               },
                             ),
-                            icon: Icon(Icons.password),
+                            icon: const Icon(Icons.password),
                             hintText: 'Enter Password',
-                            hintStyle: TextStyle(
+                            hintStyle: const TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
                             fillColor: Colors.grey,
                             focusColor: Colors.grey),
                       )
-                    : SizedBox(),
-                SizedBox(height: 10),
+                    : const SizedBox(),
+                const SizedBox(height: 10),
                 if (widget.needConfirmPasswordinSignup == true &&
                     widget.shouldEmailAuthentication == false)
                   TextFormField(
@@ -200,15 +200,15 @@ class _SignUpState extends State<SignUp> {
                             });
                           },
                         ),
-                        icon: Icon(Icons.password),
+                        icon: const Icon(Icons.password),
                         hintText: 'confirm Password',
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                         fillColor: Colors.grey,
                         focusColor: Colors.grey),
                   ),
                 widget.additionalWidget ?? const SizedBox(),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 CupertinoButton(

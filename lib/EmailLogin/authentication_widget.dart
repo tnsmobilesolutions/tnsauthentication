@@ -1,15 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-import 'dart:ui';
-
 import 'package:authentication/EmailLogin/email_verification.dart';
-import 'package:authentication/EmailLogin/remeberMe_checkBox.dart';
 import 'package:authentication/EmailLogin/sign_up.dart';
-import 'package:authentication/PhoneLogin/PhoneVerificationScreen.dart';
-
+import 'package:authentication/PhoneLogin/phone_verification_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 typedef DoubleStringParamCallback<T, E> = Function(T first, E second);
 typedef ForgetPasswordCallback = Function(String email);
 typedef SingleStringParamCallback = Function(String phoneNumber);
@@ -17,6 +10,7 @@ typedef RememberMeCallback = Function();
 typedef ModelParamCallback = Function(String? email, String? password,
     String? name, String? userId, String? mobile);
 
+// ignore: must_be_immutable
 class AuthenticationWidget extends StatefulWidget {
   AuthenticationWidget({
     Key? key,
@@ -102,7 +96,7 @@ class AuthenticationWidget extends StatefulWidget {
   TextStyle? loginPageTextStyle;
   bool? needConfirmPasswordinSignup;
   bool? obscureText;
-  final EmailBackButtonCallBack? onBackPressed;
+  final FunctionCallBack? onBackPressed;
   final DoubleStringParamCallback? onEmailLoginPressed;
   final ForgetPasswordCallback? onForgetPassword;
   final SingleStringParamCallback? onPhoneLoginPressed;
@@ -144,7 +138,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
   final _formkey = GlobalKey<FormState>();
   bool _isChecked = false;
   bool _isPasswordVisible = true;
-  bool _isSwitched = false;
+  // bool _isSwitched = false;
 
   // bool _containsAtleast8Characters(String? password) {
   //   return password!.length >= 8;
@@ -171,10 +165,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
       backgroundColor: widget.scaffoldbackGroundColor ?? Colors.white,
       body: SingleChildScrollView(
         child: Center(
-          child: Container(
-            // decoration: BoxDecoration(
-            //     border: Border.all(color: Colors.grey),
-            //     borderRadius: BorderRadius.circular(10)),
+          child: SizedBox(
             child: Form(
               key: _formkey,
               child: Column(
@@ -189,7 +180,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                             // height: imageHeight ?? 150,
                             // width: imageWidth ?? 600,
                             image: widget.image ??
-                                AssetImage('assets/images/login.png'),
+                                const AssetImage('assets/images/login.png'),
                           ),
                         )
                       : SizedBox(
@@ -217,7 +208,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                   'Login',
                                   style: widget.loginPageTextStyle,
                                 ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             widget.phoneAuthentication == true
                                 ? TextFormField(
                                     autofocus: false,
@@ -228,8 +219,8 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                     },
                                     textInputAction: TextInputAction.next,
                                     decoration: InputDecoration(
-                                      prefixIcon: Icon(Icons.phone),
-                                      contentPadding: EdgeInsets.all(15),
+                                      prefixIcon: const Icon(Icons.phone),
+                                      contentPadding: const EdgeInsets.all(15),
                                       hintText: widget.phoneHinttext ??
                                           'Phone Number',
                                       hintStyle: widget.phoneHintTextStyle ??
@@ -262,7 +253,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                             ? AutovalidateMode.always
                                             : AutovalidateMode.disabled,
                                         style: widget.emailTextStyle ??
-                                            TextStyle(color: Colors.black),
+                                            const TextStyle(color: Colors.black),
                                         cursorColor:
                                             widget.cursorColor ?? Colors.black,
                                         textInputAction: TextInputAction.next,
@@ -272,7 +263,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                   value.isEmpty)) {
                                             return ("Please Enter Your Email");
                                           }
-
+          
                                           if (!RegExp(
                                                   r'^[\w-.]+(\.[\w-.]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$')
                                               .hasMatch(value.toString())) {
@@ -291,7 +282,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                         controller: emailcontroller,
                                         decoration: widget
                                                 .emailFieldDecoration ??
-                                            InputDecoration(
+                                            const InputDecoration(
                                               labelText: 'Email',
                                               labelStyle:
                                                   TextStyle(color: Colors.blue),
@@ -310,13 +301,13 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                       color: Colors.grey)),
                                             ),
                                       ),
-                                      SizedBox(height: 10),
+                                      const SizedBox(height: 10),
                                       TextFormField(
                                         autovalidateMode: _autoValidatePassword
                                             ? AutovalidateMode.always
                                             : AutovalidateMode.disabled,
                                         style: widget.passwordTextStyle ??
-                                            TextStyle(color: Colors.black),
+                                            const TextStyle(color: Colors.black),
                                         cursorColor:
                                             widget.cursorColor ?? Colors.black,
                                         autofocus: false,
@@ -324,7 +315,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                         obscureText: widget.obscureText ??
                                             _isPasswordVisible,
                                         validator: (value) {
-                                          RegExp regex = RegExp(r'^.{6,}$');
+                                          // RegExp regex = RegExp(r'^.{6,}$');
                                           if (!_autoValidatePassword &&
                                               (value == null ||
                                                   value.isEmpty)) {
@@ -378,9 +369,9 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                       .passwordSuffixIcon ??
                                                   IconButton(
                                                     icon: _isPasswordVisible
-                                                        ? Icon(Icons
+                                                        ? const Icon(Icons
                                                             .visibility_off)
-                                                        : Icon(
+                                                        : const Icon(
                                                             Icons.visibility),
                                                     onPressed: () {
                                                       setState(() {
@@ -391,16 +382,16 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                   ),
                                               labelText: 'Password',
                                               focusedErrorBorder:
-                                                  OutlineInputBorder(
+                                                  const OutlineInputBorder(
                                                       borderSide: BorderSide(
                                                           color: Colors.grey)),
-                                              focusedBorder: OutlineInputBorder(
+                                              focusedBorder: const OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                       color: Colors.blue)),
-                                              errorBorder: OutlineInputBorder(
+                                              errorBorder: const OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                       color: Colors.grey)),
-                                              enabledBorder: OutlineInputBorder(
+                                              enabledBorder: const OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                       color: Colors.grey)),
                                             ),
@@ -408,7 +399,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                       widget.rememberMe == true
                                           ? Column(
                                               children: [
-                                                SizedBox(height: 20),
+                                                const SizedBox(height: 20),
                                                 Row(
                                                   children: [
                                                     widget.rememberMeWidget ??
@@ -430,16 +421,16 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                                 : Colors.grey,
                                                           ),
                                                         ),
-                                                    SizedBox(width: 5),
-                                                    Text('Remember me'),
+                                                    const SizedBox(width: 5),
+                                                    const Text('Remember me'),
                                                   ],
                                                 ),
                                               ],
                                             )
-                                          : SizedBox()
+                                          : const SizedBox()
                                     ],
                                   ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             widget.forgetPasswordVisibilty == true
                                 ? TextButton(
                                     onPressed: () {
@@ -449,11 +440,11 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                     child: Text(
                                       'Forgot Password ?',
                                       style: widget.forgotPasswordTextStyle ??
-                                          TextStyle(),
+                                          const TextStyle(),
                                     ),
                                   )
-                                : SizedBox(),
-                            SizedBox(height: 10),
+                                : const SizedBox(),
+                            const SizedBox(height: 10),
                             CupertinoButton(
                               color: widget.buttonColor ?? Colors.cyanAccent,
                               onPressed: () {
@@ -525,7 +516,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                       //           password:
                                       //               decryptpassword.toString()));
                                     })
-                                : SizedBox(height: 0, width: 0),
+                                : const SizedBox(height: 0, width: 0),
                           ],
                         ),
                       ),
@@ -543,7 +534,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text('Don\'t have an account?'),
+            const Text('Don\'t have an account?'),
             TextButton(
               onPressed: () {
                 widget.shouldEmailAuthentication == true
@@ -569,7 +560,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                         MaterialPageRoute(
                           builder: (context) => SignUp(
                             shouldEmailAuthentication:
-                                widget.shouldEmailAuthentication,
+                            widget.shouldEmailAuthentication,
                             signUpButtonText: widget.signUpButtonText,
                             additionalWidget: widget.additionalWidget,
                             onSignUpPressed: widget.onSignUpPressed,
