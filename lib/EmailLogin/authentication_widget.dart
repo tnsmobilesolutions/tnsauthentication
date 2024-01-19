@@ -3,6 +3,7 @@ import 'package:authentication/EmailLogin/sign_up.dart';
 import 'package:authentication/PhoneLogin/phone_verification_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 typedef DoubleStringParamCallback<T, E> = Function(T first, E second);
 typedef ForgetPasswordCallback = Function(String email);
 typedef SingleStringParamCallback = Function(String phoneNumber);
@@ -12,64 +13,67 @@ typedef ModelParamCallback = Function(String? email, String? password,
 
 // ignore: must_be_immutable
 class AuthenticationWidget extends StatefulWidget {
-  AuthenticationWidget({
-    Key? key,
-    this.buttonColor,
-    this.additionalWidget,
-    this.image,
-    this.onEmailLoginPressed,
-    required this.isSignUpVisible,
-    this.emailFieldhintText,
-    this.passwordFieldFieldhintText,
-    this.loginButtonText,
-    this.title,
-    required this.phoneAuthentication,
-    this.onPhoneLoginPressed,
-    this.onSignUpPressed,
-    this.signUpButtonText,
-    this.cardColor,
-    this.scaffoldbackGroundColor,
-    this.isImageVisible,
-    this.loginImage,
-    this.cardLeftPadding,
-    this.cardRightPadding,
-    this.imageHeight,
-    this.imageWidth,
-    this.cardElevation,
-    this.cardHeight,
-    this.cardWidth,
-    this.isBiometricAvailable,
-    this.rememberMe,
-    this.loginButonTextColor,
-    this.textFieldBorderColor,
-    this.textfieldHintColor,
-    this.loginPageTextStyle,
-    this.phoneHinttext,
-    this.phoneHintTextStyle,
-    this.emailTextStyle,
-    this.passwordTextStyle,
-    this.signupAppBarText,
-    this.needConfirmPasswordinSignup,
-    this.loginButtonTextStyle,
-    required this.shouldEmailAuthentication,
-    this.onBackPressed,
-    this.onVerifyPressed,
-    this.emailFieldDecoration,
-    this.passwordFieldDecoration,
-    this.passwordSuffixIcon,
-    this.obscureText,
-    this.cursorColor,
-    this.forgetPasswordVisibilty,
-    this.onForgetPassword,
-    this.forgotPasswordTextStyle,
-    this.onRememberMePressed,
-    this.rememberMeBackgroundColor,
-    this.rememberMeIconColor,
-    this.rememberMeWidget,
-    this.rememberMeIcon,
-  }) : super(key: key);
+  AuthenticationWidget(
+      {Key? key,
+      this.buttonColor,
+      this.additionalWidget,
+      this.image,
+      this.onEmailLoginPressed,
+      required this.isSignUpVisible,
+      this.emailFieldhintText,
+      this.passwordFieldFieldhintText,
+      this.loginButtonText,
+      this.title,
+      required this.phoneAuthentication,
+      this.onPhoneLoginPressed,
+      this.onSignUpPressed,
+      this.signUpButtonText,
+      this.cardColor,
+      this.scaffoldbackGroundColor,
+      this.isImageVisible,
+      this.loginImage,
+      this.cardLeftPadding,
+      this.cardRightPadding,
+      this.imageHeight,
+      this.imageWidth,
+      this.cardElevation,
+      this.cardHeight,
+      this.cardWidth,
+      this.isBiometricAvailable,
+      this.rememberMe,
+      this.loginButonTextColor,
+      this.textFieldBorderColor,
+      this.textfieldHintColor,
+      this.loginPageTextStyle,
+      this.phoneHinttext,
+      this.phoneHintTextStyle,
+      this.emailTextStyle,
+      this.passwordTextStyle,
+      this.signupAppBarText,
+      this.needConfirmPasswordinSignup,
+      this.loginButtonTextStyle,
+      required this.shouldEmailAuthentication,
+      this.onBackPressed,
+      this.onVerifyPressed,
+      this.emailFieldDecoration,
+      this.passwordFieldDecoration,
+      this.passwordSuffixIcon,
+      this.obscureText,
+      this.cursorColor,
+      this.forgetPasswordVisibilty,
+      this.onForgetPassword,
+      this.forgotPasswordTextStyle,
+      this.onRememberMePressed,
+      this.rememberMeBackgroundColor,
+      this.rememberMeIconColor,
+      this.rememberMeWidget,
+      this.rememberMeIcon,
+      this.textForSignup,
+      this.signupOnpressedonLoginButton})
+      : super(key: key);
 
   Widget? additionalWidget;
+  final VoidCallback? signupOnpressedonLoginButton;
   Color? buttonColor;
   Color? cardColor;
   double? cardElevation;
@@ -79,6 +83,7 @@ class AuthenticationWidget extends StatefulWidget {
   double? cardWidth;
   Color? cursorColor;
   String? emailFieldhintText;
+  String? textForSignup;
   TextStyle? emailTextStyle;
   bool? forgetPasswordVisibilty = false;
   TextStyle? forgotPasswordTextStyle;
@@ -253,7 +258,8 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                             ? AutovalidateMode.always
                                             : AutovalidateMode.disabled,
                                         style: widget.emailTextStyle ??
-                                            const TextStyle(color: Colors.black),
+                                            const TextStyle(
+                                                color: Colors.black),
                                         cursorColor:
                                             widget.cursorColor ?? Colors.black,
                                         textInputAction: TextInputAction.next,
@@ -263,7 +269,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                   value.isEmpty)) {
                                             return ("Please Enter Your Email");
                                           }
-          
+
                                           if (!RegExp(
                                                   r'^[\w-.]+(\.[\w-.]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$')
                                               .hasMatch(value.toString())) {
@@ -307,7 +313,8 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                             ? AutovalidateMode.always
                                             : AutovalidateMode.disabled,
                                         style: widget.passwordTextStyle ??
-                                            const TextStyle(color: Colors.black),
+                                            const TextStyle(
+                                                color: Colors.black),
                                         cursorColor:
                                             widget.cursorColor ?? Colors.black,
                                         autofocus: false,
@@ -324,28 +331,6 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                           if (value!.length < 6) {
                                             return ("Enter Valid Password(Min. 6 Character)");
                                           }
-                                          // if (_password != null &&
-                                          //     _password!.isNotEmpty) {
-                                          //   if (!_containsUppercaseLetter(
-                                          //       _password)) {
-                                          //     return 'At least one uppercase letter';
-                                          //   }
-                                          //   if (!_containsLowercaseLetter(
-                                          //       _password)) {
-                                          //     return 'At least one lowercase letter';
-                                          //   }
-                                          //   if (!_containsNumericValue(
-                                          //       _password)) {
-                                          //     return 'At least one numeric value';
-                                          //   }
-                                          //   if (!_containsSymbol(_password)) {
-                                          //     return 'At least one symbol';
-                                          //   }
-                                          //   if (!_containsAtleast8Characters(
-                                          //       _password)) {
-                                          //     return 'At least 8 characters';
-                                          //   }
-                                          // }
                                           return null;
                                         },
                                         onChanged: (_) {
@@ -385,15 +370,18 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                   const OutlineInputBorder(
                                                       borderSide: BorderSide(
                                                           color: Colors.grey)),
-                                              focusedBorder: const OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      color: Colors.blue)),
-                                              errorBorder: const OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      color: Colors.grey)),
-                                              enabledBorder: const OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      color: Colors.grey)),
+                                              focusedBorder:
+                                                  const OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.blue)),
+                                              errorBorder:
+                                                  const OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.grey)),
+                                              enabledBorder:
+                                                  const OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.grey)),
                                             ),
                                       ),
                                       widget.rememberMe == true
@@ -534,43 +522,45 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            const Text('Don\'t have an account?'),
+            Text(widget.textForSignup ?? 'Don\'t have an account?'),
             TextButton(
-              onPressed: () {
-                widget.shouldEmailAuthentication == true
-                    ? Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => EmailVerification(
-                            shouldEmailAuthentication:
-                                widget.shouldEmailAuthentication,
-                            onVerifyPressed: widget.onVerifyPressed,
-                            onBackPressed: widget.onBackPressed,
-                            signUpButtonText: widget.signUpButtonText,
-                            additionalWidget: widget.additionalWidget,
-                            onSignUpPressed: widget.onSignUpPressed,
-                            buttonColor: widget.buttonColor,
-                            signupAppBarText: widget.signupAppBarText,
-                            needConfirmPasswordinSignup:
-                                widget.needConfirmPasswordinSignup,
-                          ),
-                        ))
-                    : Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SignUp(
-                            shouldEmailAuthentication:
-                            widget.shouldEmailAuthentication,
-                            signUpButtonText: widget.signUpButtonText,
-                            additionalWidget: widget.additionalWidget,
-                            onSignUpPressed: widget.onSignUpPressed,
-                            buttonColor: widget.buttonColor,
-                            signupAppBarText: widget.signupAppBarText,
-                            needConfirmPasswordinSignup:
-                                widget.needConfirmPasswordinSignup,
-                          ),
-                        ));
-              },
+              onPressed: widget.signupOnpressedonLoginButton,
+              
+              // onPressed: () {
+              //   widget.shouldEmailAuthentication == true
+              //       ? Navigator.push(
+              //           context,
+              //           MaterialPageRoute(
+              //             builder: (context) => EmailVerification(
+              //               shouldEmailAuthentication:
+              //                   widget.shouldEmailAuthentication,
+              //               onVerifyPressed: widget.onVerifyPressed,
+              //               onBackPressed: widget.onBackPressed,
+              //               signUpButtonText: widget.signUpButtonText,
+              //               additionalWidget: widget.additionalWidget,
+              //               onSignUpPressed: widget.onSignUpPressed,
+              //               buttonColor: widget.buttonColor,
+              //               signupAppBarText: widget.signupAppBarText,
+              //               needConfirmPasswordinSignup:
+              //                   widget.needConfirmPasswordinSignup,
+              //             ),
+              //           ))
+              //       : Navigator.push(
+              //           context,
+              //           MaterialPageRoute(
+              //             builder: (context) => SignUp(
+              //               shouldEmailAuthentication:
+              //               widget.shouldEmailAuthentication,
+              //               signUpButtonText: widget.signUpButtonText,
+              //               additionalWidget: widget.additionalWidget,
+              //               onSignUpPressed: widget.onSignUpPressed,
+              //               buttonColor: widget.buttonColor,
+              //               signupAppBarText: widget.signupAppBarText,
+              //               needConfirmPasswordinSignup:
+              //                   widget.needConfirmPasswordinSignup,
+              //             ),
+              //           ));
+              // },
               child: Text('SignUp',
                   style: TextStyle(
                       color: widget.buttonColor ?? Colors.cyanAccent)),
