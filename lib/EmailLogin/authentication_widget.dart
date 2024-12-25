@@ -518,58 +518,53 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
       ),
       bottomNavigationBar: Visibility(
         visible: widget.isSignUpVisible,
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Text(widget.textForSignup ?? 'Don\'t have an account?'),
-                TextButton(
-                  onPressed: widget.signupOnpressedonLoginButton,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Text(widget.textForSignup ?? 'Don\'t have an account?'),
+            TextButton(
+              onPressed: widget.signupOnpressedonLoginButton,
 
-                  // onPressed: () {
-                  //   widget.shouldEmailAuthentication == true
-                  //       ? Navigator.push(
-                  //           context,
-                  //           MaterialPageRoute(
-                  //             builder: (context) => EmailVerification(
-                  //               shouldEmailAuthentication:
-                  //                   widget.shouldEmailAuthentication,
-                  //               onVerifyPressed: widget.onVerifyPressed,
-                  //               onBackPressed: widget.onBackPressed,
-                  //               signUpButtonText: widget.signUpButtonText,
-                  //               additionalWidget: widget.additionalWidget,
-                  //               onSignUpPressed: widget.onSignUpPressed,
-                  //               buttonColor: widget.buttonColor,
-                  //               signupAppBarText: widget.signupAppBarText,
-                  //               needConfirmPasswordinSignup:
-                  //                   widget.needConfirmPasswordinSignup,
-                  //             ),
-                  //           ))
-                  //       : Navigator.push(
-                  //           context,
-                  //           MaterialPageRoute(
-                  //             builder: (context) => SignUp(
-                  //               shouldEmailAuthentication:
-                  //               widget.shouldEmailAuthentication,
-                  //               signUpButtonText: widget.signUpButtonText,
-                  //               additionalWidget: widget.additionalWidget,
-                  //               onSignUpPressed: widget.onSignUpPressed,
-                  //               buttonColor: widget.buttonColor,
-                  //               signupAppBarText: widget.signupAppBarText,
-                  //               needConfirmPasswordinSignup:
-                  //                   widget.needConfirmPasswordinSignup,
-                  //             ),
-                  //           ));
-                  // },
-                  child: Text('SignUp',
-                      style: TextStyle(
-                          color: widget.buttonColor ?? Colors.cyanAccent)),
-                ),
-              ],
+              // onPressed: () {
+              //   widget.shouldEmailAuthentication == true
+              //       ? Navigator.push(
+              //           context,
+              //           MaterialPageRoute(
+              //             builder: (context) => EmailVerification(
+              //               shouldEmailAuthentication:
+              //                   widget.shouldEmailAuthentication,
+              //               onVerifyPressed: widget.onVerifyPressed,
+              //               onBackPressed: widget.onBackPressed,
+              //               signUpButtonText: widget.signUpButtonText,
+              //               additionalWidget: widget.additionalWidget,
+              //               onSignUpPressed: widget.onSignUpPressed,
+              //               buttonColor: widget.buttonColor,
+              //               signupAppBarText: widget.signupAppBarText,
+              //               needConfirmPasswordinSignup:
+              //                   widget.needConfirmPasswordinSignup,
+              //             ),
+              //           ))
+              //       : Navigator.push(
+              //           context,
+              //           MaterialPageRoute(
+              //             builder: (context) => SignUp(
+              //               shouldEmailAuthentication:
+              //               widget.shouldEmailAuthentication,
+              //               signUpButtonText: widget.signUpButtonText,
+              //               additionalWidget: widget.additionalWidget,
+              //               onSignUpPressed: widget.onSignUpPressed,
+              //               buttonColor: widget.buttonColor,
+              //               signupAppBarText: widget.signupAppBarText,
+              //               needConfirmPasswordinSignup:
+              //                   widget.needConfirmPasswordinSignup,
+              //             ),
+              //           ));
+              // },
+              child: Text('SignUp',
+                  style: TextStyle(
+                      color: widget.buttonColor ?? Colors.cyanAccent)),
             ),
-            if (widget.additionalWidget != null) widget.additionalWidget!,
           ],
         ),
       ),
